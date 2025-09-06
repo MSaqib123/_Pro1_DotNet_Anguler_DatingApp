@@ -5,6 +5,6 @@ public class AppUsers
 {
 
     public int Id { get; set; }
-    [Required]
-    public string UserName { get; set; }
+    //[Required]
+    public required string UserName { get; set; }
 }

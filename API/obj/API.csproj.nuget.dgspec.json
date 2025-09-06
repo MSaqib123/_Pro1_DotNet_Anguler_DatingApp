@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Angular_DotNet_Project\\DatingApp\\api\\API.csproj": {}
+    "D:\\Angular_DotNet_Project\\DatingApp\\API\\API.csproj": {}
   },
   "projects": {
-    "D:\\Angular_DotNet_Project\\DatingApp\\api\\API.csproj": {
+    "D:\\Angular_DotNet_Project\\DatingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Angular_DotNet_Project\\DatingApp\\api\\API.csproj",
+        "projectUniqueName": "D:\\Angular_DotNet_Project\\DatingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\Angular_DotNet_Project\\DatingApp\\api\\API.csproj",
+        "projectPath": "D:\\Angular_DotNet_Project\\DatingApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\m4357\\.nuget\\packages\\",
-        "outputPath": "D:\\Angular_DotNet_Project\\DatingApp\\api\\obj\\",
+        "outputPath": "D:\\Angular_DotNet_Project\\DatingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -54,7 +54,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.*, )"
+              "version": "[8.0.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.19, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
