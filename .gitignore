@@ -1,0 +1,31 @@
+# Visual Studio cache
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build folders
+bin/
+obj/
+out/
+
+# Angular build & dependencies
+node_modules/
+dist/
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# Environment configs
+.env
+*.env
+
+# IDE configs
+.idea/
+*.iml
+
+# Temporary files
+*.tmp
+*.log
