@@ -135,3 +135,5 @@ D:\Angular_DotNet_Project\DatingApp\API\bin\Debug\net8.0\runtimes\win-arm64\nati
 D:\Angular_DotNet_Project\DatingApp\API\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\Angular_DotNet_Project\DatingApp\API\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\Angular_DotNet_Project\DatingApp\API\obj\Debug\net8.0\API.sourcelink.json
+D:\Angular_DotNet_Project\DatingApp\API\bin\Debug\net8.0\package-lock.json
+D:\Angular_DotNet_Project\DatingApp\API\bin\Debug\net8.0\package.json
