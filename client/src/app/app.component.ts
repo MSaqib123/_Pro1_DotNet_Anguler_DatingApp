@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from "./nav/nav.component";
+import { ContainerComponent } from "./shared/container/container.component";
 
 @Component({
   selector: 'app-root',
-  imports:[CommonModule],
+  imports: [CommonModule, NavComponent, ContainerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
