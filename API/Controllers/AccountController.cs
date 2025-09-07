@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using API.DTOs;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,18 +14,20 @@ public class AccountController : BaseApiController
 {
 
     private readonly DataContext _context;
+    private readonly ITokenService _tokenService;
 
-    public AccountController(DataContext context)
+    public AccountController(DataContext context,ITokenService tokenService)
     {
         _context = context;
-    }
+        _tokenService = tokenService;
+    } 
 
 
     // public async Task<ActionResult<AppUsers>> Register([FromQuery] string userName, string password)
     // public async Task<ActionResult<AppUsers>> Register([FromBody] string userName, string password)
     // public async Task<ActionResult<AppUsers>> Register(string userName, string password)
     [HttpPost("register")]
-    public async Task<ActionResult<AppUsers>> Register(RegisterDto registerDto)
+    public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
         if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
         using var hmac = new HMACSHA512();
@@ -36,10 +39,15 @@ public class AccountController : BaseApiController
         };
         _context.AppUsers.Add(user);
         await _context.SaveChangesAsync();
-        return user;
+        return new UserDto
+        {
+            Username = user.UserName,
+            Token = _tokenService.CreateToken(user)
+        };
     }
+
     [HttpPost("login")]
-    public async Task<ActionResult<AppUsers>> Register(LoginDto loginDto)
+    public async Task<ActionResult<UserDto>> Register(LoginDto loginDto)
     {
         var user = await _context.AppUsers.FirstOrDefaultAsync(x=>x.UserName == loginDto.Username.ToLower());
         if (user == null) return Unauthorized("Invalid Crediental");
@@ -50,7 +58,11 @@ public class AccountController : BaseApiController
         {
             if (computeHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Credential");
         }
-        return user;
+        return new UserDto
+        {
+            Username = user.UserName,
+            Token = _tokenService.CreateToken(user)
+        };
     }
 
 
