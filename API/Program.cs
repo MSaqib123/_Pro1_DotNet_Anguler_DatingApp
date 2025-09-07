@@ -1,4 +1,6 @@
+using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ITokenService,TokenService>();
 
 // add Cors service
 builder.Services.AddCors(options =>
