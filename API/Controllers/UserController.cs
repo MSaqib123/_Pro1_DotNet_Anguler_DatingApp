@@ -1,4 +1,5 @@
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,6 +7,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+
 public class UserController : BaseApiController
 {
 
@@ -17,6 +19,7 @@ public class UserController : BaseApiController
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<AppUsers>>> GetUsers()
     {
         var users = await _context.AppUsers.ToListAsync();
@@ -24,7 +27,7 @@ public class UserController : BaseApiController
     }
 
 
-
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<AppUsers>> GetUser(int id)
     {

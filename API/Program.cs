@@ -1,5 +1,8 @@
+using System.Text;
 using API.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +15,6 @@ builder.Services.AddDbContext<DataContext>(opt =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ITokenService,TokenService>();
 
 // add Cors service
 builder.Services.AddCors(options =>
@@ -30,6 +32,20 @@ builder.Services.AddCors(options =>
             // });
 });
 
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opt=>
+    {
+        var tokenKey = builder.Configuration["TokenKey"] ?? throw new Exception("TokenKey not found");
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey)),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+    });
+
 var app = builder.Build();
 
 //============================ Pipline =======================
@@ -41,6 +57,8 @@ app.UseHttpsRedirection();
 // Use CORS policy
 app.UseCors("AllowAngularApp");
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
