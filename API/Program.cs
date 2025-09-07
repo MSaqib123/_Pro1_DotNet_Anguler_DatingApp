@@ -29,7 +29,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-//================== Pipline ==============
+//============================ Pipline =======================
 // Configure the HTTP request pipeline.
 
 // Use HTTPS redirection
