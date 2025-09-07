@@ -28,9 +28,12 @@ public class UserController : BaseApiController
     [HttpGet("{id}")]
     public async Task<ActionResult<AppUsers>> GetUser(int id)
     {
-        var user = await  _context.AppUsers.FindAsync(id);
+        var user = await _context.AppUsers.FindAsync(id);
         if (user == null) return NotFound();
         return user;
     }
+
+
+    
 
 }
