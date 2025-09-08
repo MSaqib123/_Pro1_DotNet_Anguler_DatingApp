@@ -5,6 +5,9 @@
 *.userosscache
 *.sln.docstates
 
+# ssl
+ssl/
+
 # Build folders
 bin/
 obj/
