@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from "./nav/nav.component";
 import { ContainerComponent } from "./shared/container/container.component";
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,26 @@ import { ContainerComponent } from "./shared/container/container.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
+  private accountService = inject(AccountService);
   http = inject(HttpClient); 
   title = 'client';
   users: any;
 
-  ngOnInit(): void {
-    this.http.get('https://localhost:5001/api/user').subscribe({
+  ngOnInit(): void { 
+    this.getUsers();
+    this.setCurentuser();
+  }
+
+  setCurentuser(){
+    const userString =localStorage.getItem('user');
+    if(!userString) return;
+
+    const user = JSON.parse(userString);
+    this.accountService.currentUser.set(user);
+  }
+
+  getUsers(){
+     this.http.get('https://localhost:5001/api/user').subscribe({
       next: (response) => {
         console.log("✅ API Response:", response);  
         this.users = response;                     
@@ -28,6 +43,5 @@ export class AppComponent implements OnInit {
         console.log("✅ Request completed successfully");
       }
     });
-    
   }
 }

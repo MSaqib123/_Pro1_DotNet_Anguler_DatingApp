@@ -5,7 +5,7 @@
             <!--=================-->
             <!-- we do not use Structural directive in our code  (*ngIf) very old-->
             <!--=================-->
-            @if(loggedIn)
+            @if(accountService.currentUser())
             {
             <ul class="navbar-nav me-auto mb-2 mb-md-0" >
                 <li class="nav-item"> 
@@ -20,7 +20,7 @@
             </ul>
             }
 
-            @if(loggedIn){
+            @if(accountService.currentUser()){
                 
                 <div class="btn-group me-3">
                     <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
@@ -39,7 +39,7 @@
            
 
 
-            @if(!loggedIn)
+            @if(!accountService.currentUser())
             {
                 <form class="d-flex" #loginForm="ngForm" (ngSubmit)="login()" role="search" autocomplete="off">
                     <input class="form-control me-2" placeholder="UserName" name="username" [(ngModel)]="model.username"/> 
