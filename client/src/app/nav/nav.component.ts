@@ -3,9 +3,11 @@ import {FormsModule} from "@angular/forms";
 import { AccountService } from '../_services/account.service';
 import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterLink,RouterLinkActive  } from '@angular/router';
+
 @Component({
   selector: 'app-nav',
-  imports: [FormsModule,CommonModule,NgbDropdownModule],
+  imports: [FormsModule, CommonModule, NgbDropdownModule, RouterLink, RouterLinkActive],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
