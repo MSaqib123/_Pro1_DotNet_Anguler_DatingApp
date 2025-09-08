@@ -17,23 +17,27 @@
                 <li class="nav-item"> 
                     <a class="nav-link" >Messages</a>
                 </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" (click)="logout()">Logout</a>
-                </li>
             </ul>
             }
 
             @if(loggedIn){
-                <!-- help: https://ej2.syncfusion.com/angular/documentation/drop-down-list/getting-started/#adding-dropdownlist-component -->
                 
-                <div class="drodpwon">
-                    <a class="dropdown-toggle text-light">Welcome user</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown">Edit profile</a>
-                        <a class="dropdown" (click)="logout()">Logout</a>
+                <div class="btn-group me-3">
+                    <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-primary">Welcome user</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <button ngbDropdownItem>Edit profile</button>
+                            <button ngbDropdownItem (click)="logout()">Logout</button>
+                        </div>
                     </div>
                 </div>
+
             }
+
+
+           
+
 
             @if(!loggedIn)
             {
