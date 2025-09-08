@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { NavComponent } from "./nav/nav.component";
 import { ContainerComponent } from "./shared/container/container.component";
 import { AccountService } from './_services/account.service';
+import { HomeComponent } from "./home/home.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, NavComponent, ContainerComponent],
+  imports: [CommonModule, NavComponent, ContainerComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

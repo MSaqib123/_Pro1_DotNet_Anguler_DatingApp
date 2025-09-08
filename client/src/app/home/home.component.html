@@ -1,0 +1,22 @@
+
+<div class="text-center pt-5">
+    @if(!registerMode)
+    {
+        <h1>Find your match</h1>
+        <p class="lead">Come on in to view your matches.. all your need to do is sign up!</p>
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg me-2" (click)="registerToggle()">Register</button>
+            <button class="btn btn-info btn-lg me-2">Learn More</button>
+        </div>
+        
+    }
+    @else{
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque magni voluptas enim accusamus, voluptatibus facilis. Assumenda aspernatur unde quas recusandae, modi dolorem quos iure inventore aliquid. Maxime sed quas beatae.</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
