@@ -14,12 +14,9 @@ import { HomeComponent } from "./home/home.component";
 })
 export class AppComponent implements OnInit {
   private accountService = inject(AccountService);
-  http = inject(HttpClient); 
   title = 'client';
-  users: any;
 
   ngOnInit(): void { 
-    this.getUsers();
     this.setCurentuser();
   }
 
@@ -31,18 +28,4 @@ export class AppComponent implements OnInit {
     this.accountService.currentUser.set(user);
   }
 
-  getUsers(){
-     this.http.get('https://localhost:5001/api/user').subscribe({
-      next: (response) => {
-        console.log("✅ API Response:", response);  
-        this.users = response;                     
-      },
-      error: (error) => {
-        console.error("❌ API Error:", error);     
-      },
-      complete: () => {
-        console.log("✅ Request completed successfully");
-      }
-    });
-  }
 }
