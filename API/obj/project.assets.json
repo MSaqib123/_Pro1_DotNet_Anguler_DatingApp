@@ -3140,11 +3140,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Angular_DotNet_Project\\DatingApp\\API\\API.csproj",
+      "projectUniqueName": "D:\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
       "projectName": "API",
-      "projectPath": "D:\\Angular_DotNet_Project\\DatingApp\\API\\API.csproj",
+      "projectPath": "D:\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
       "packagesPath": "C:\\Users\\m4357\\.nuget\\packages\\",
-      "outputPath": "D:\\Angular_DotNet_Project\\DatingApp\\API\\obj\\",
+      "outputPath": "D:\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
