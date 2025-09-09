@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import { AccountService } from '../_services/account.service';
 import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterLink,RouterLinkActive  } from '@angular/router';
+import { AccountService } from '../_services/account.service';
+import { NotyfService } from '../shared/notyif.service';
 
 @Component({
   selector: 'app-nav',
@@ -14,18 +15,22 @@ import { Router, RouterLink,RouterLinkActive  } from '@angular/router';
 export class NavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
+  private notyf = inject(NotyfService);
+
   model:any = {};
   login(){
-    //console.log(this.model);
-    // ===============
-    // Abservable  we have to subscribe to abservable because they are lazzy
     this.accountService.login(this.model).subscribe({
       next: _ => {
         void this.router.navigateByUrl('/members');
+        this.notyf.success("Login Successfully");
       },
-      error: error=> console.log(error),
+      error: error=> {
+        console.log(error);
+        this.notyf.error("Login Faild");
+      },
       complete: () => {
         console.log("✅ Request completed successfully");
+        
       }
     });
   }
