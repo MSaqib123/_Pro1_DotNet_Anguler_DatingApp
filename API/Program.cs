@@ -1,6 +1,7 @@
 using System.Text;
 using API.Extensions;
 using API.Interfaces;
+using API.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -57,6 +58,8 @@ var app = builder.Build();
 
 //============================ Pipline =======================
 // Configure the HTTP request pipeline.
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Use HTTPS redirection
 app.UseHttpsRedirection();
