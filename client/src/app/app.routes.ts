@@ -5,6 +5,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { authGuard } from './_guards/auth.guard';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 
 export const routes: Routes = [
 
@@ -30,7 +31,8 @@ export const routes: Routes = [
 
     },
     
-    
+    // Anonymouse route
     // if no above route match then  the default route will be
+    {path: 'errors', component:TestErrorsComponent},
     {path: '**', component:HomeComponent, pathMatch:'full'},
 ];
