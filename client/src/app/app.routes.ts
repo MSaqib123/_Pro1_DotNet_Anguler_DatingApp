@@ -9,10 +9,27 @@ import { authGuard } from './_guards/auth.guard';
 export const routes: Routes = [
 
     {path: '', component:HomeComponent},
-    {path: 'members', component:MemberListComponent,canActivate:[authGuard]},
-    {path: 'members/:id', component:MemberDetailComponent},
-    {path: 'lists', component:ListsComponent},
-    {path: 'messages', component:MessagesComponent},
+
+    // BAD  this BAD approced
+    // {path: 'members', component:MemberListComponent,canActivate:[authGuard]},
+    // {path: 'members/:id', component:MemberDetailComponent},
+    // {path: 'lists', component:ListsComponent},
+    // {path: 'messages', component:MessagesComponent},
+
+    // GOOD  this GOOD approced
+    {
+        path:'',
+        runGuardsAndResolvers:'always',
+        canActivate : [authGuard],
+        children:[
+            {path: 'members', component:MemberListComponent},
+            {path: 'members/:id', component:MemberDetailComponent},
+            {path: 'lists', component:ListsComponent},
+            {path: 'messages', component:MessagesComponent},
+        ]
+
+    },
+    
     
     // if no above route match then  the default route will be
     {path: '**', component:HomeComponent, pathMatch:'full'},

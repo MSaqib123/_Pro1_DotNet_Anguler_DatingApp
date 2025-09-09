@@ -2,54 +2,57 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" routerLink="/">Dating App</a>
-            <!--=================-->
-            <!-- we do not use Structural directive in our code  (*ngIf) very old-->
-            <!--=================-->
-            <!-- @if(accountService.currentUser()) -->
-            @if(true)
-            {
-            <ul class="navbar-nav me-auto mb-2 mb-md-0" >
-                <li class="nav-item"> 
-                    <a class="nav-link" routerLink="/members" routerLinkActive="active" >Matches</a>
+
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <!--=================-->
+                <!-- we do not use Structural directive in our code  (*ngIf) very old-->
+                <!--=================-->
+                <!-- @if(true) -->
+                @if(accountService.currentUser())
+                {
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
                 </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" routerLink="/lists"  routerLinkActive="active">list</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/lists" routerLinkActive="active">list</a>
                 </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" routerLink="/messages"  routerLinkActive="active">Messages</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
                 </li>
+                }
+
             </ul>
-            }
 
             @if(accountService.currentUser()){
-                
-                <div class="btn-group me-3">
-                    <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-                        <button type="button" class="btn btn-primary">Welcome user</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
-                        <div class="dropdown-menu" ngbDropdownMenu>
-                            <button ngbDropdownItem>Edit profile</button>
-                            <button ngbDropdownItem (click)="logout()">Logout</button>
-                        </div>
+
+            <div class="btn-group me-3">
+                <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-primary">Welcome user</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+                    <div class="dropdown-menu" ngbDropdownMenu>
+                        <button ngbDropdownItem>Edit profile</button>
+                        <button ngbDropdownItem (click)="logout()">Logout</button>
                     </div>
                 </div>
+            </div>
 
             }
 
 
-           
+
 
 
             @if(!accountService.currentUser())
             {
-                <form class="d-flex" #loginForm="ngForm" (ngSubmit)="login()" role="search" autocomplete="off">
-                    <input class="form-control me-2" placeholder="UserName" name="username" [(ngModel)]="model.username"/> 
-                    <input class="form-control me-2" placeholder="Password" type="password" name="password" [(ngModel)]="model.password" />
-                    <button class="btn btn-outline-success" type="submit">Login </button>
-                </form>
+            <form class="d-flex" #loginForm="ngForm" (ngSubmit)="login()" role="search" autocomplete="off">
+                <input class="form-control me-2" placeholder="UserName" name="username" [(ngModel)]="model.username" />
+                <input class="form-control me-2" placeholder="Password" type="password" name="password"
+                    [(ngModel)]="model.password" />
+                <button class="btn btn-outline-success" type="submit">Login </button>
+            </form>
             }
-            
-            
+
+
         </div>
     </nav>
 </header>
