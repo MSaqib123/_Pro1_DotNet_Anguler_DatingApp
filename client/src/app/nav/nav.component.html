@@ -1,5 +1,5 @@
 <header data-bs-theme="dark">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top  bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" routerLink="/">Dating App</a>
 
@@ -27,9 +27,9 @@
 
             <div class="btn-group me-3">
                 <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-                    <button type="button" class="btn btn-primary">Welcome user</button>
+                    <button type="button" class="btn btn-primary">Welcome {{accountService?.currentUser()?.username | titlecase}}</button>
                     <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
-                    <div class="dropdown-menu" ngbDropdownMenu>
+                    <div class="dropdown-menu bg-primary" ngbDropdownMenu>
                         <button ngbDropdownItem>Edit profile</button>
                         <button ngbDropdownItem (click)="logout()">Logout</button>
                     </div>
@@ -48,7 +48,7 @@
                 <input class="form-control me-2" placeholder="UserName" name="username" [(ngModel)]="model.username" />
                 <input class="form-control me-2" placeholder="Password" type="password" name="password"
                     [(ngModel)]="model.password" />
-                <button class="btn btn-outline-success" type="submit">Login </button>
+                <button class="btn btn-success" type="submit">Login </button>
             </form>
             }
 
