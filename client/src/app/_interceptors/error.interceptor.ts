@@ -2,56 +2,55 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { catchError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const router = inject(Router);
-  const toastr = inject(ToastrService);
+  console.log('Interceptor triggered for request:', req.urlWithParams); // Debug log (optional)
   return next(req).pipe(
-    //rxJs
-    catchError(error=>{
-      //check error
-      if(error){
-        switch (error.status) {
-          case 400:
-            // Note
-            // we have 2 types of 400 error
-            // Bad Request 400  --> only single text
-            // Error Erray Request 400  --> has array list of Errors
-
-            //=================
-            // Errors List  with keys
-            //=================
-            // request error ->contain  error Object -> contain -> errors+key
-            if(error.error.errors){
-              const modelStateErrors = [];
-              for(const key in error.error.errors){
-                if(error.error.errors[key]){
-                  modelStateErrors.push(error.error.erros[key]);
-                }
-              }
-              throw modelStateErrors.flat();
-            }
-            else{
-              toastr.error(error.error,error.status)
-            }
-            break;
-          case 401:
-            toastr.error("Unauthorized",error.status)
-            break;
-          case 404:
-            router.navigateByUrl("/not-found");
-            break;
-          case 500:
-            const navigationExtras: NavigationExtras = {state:{error:error.error}};
-            router.navigateByUrl('/server-error',navigationExtras);
-            break;
-          default:
-            toastr.error("Something unexpected went wrong")
-            break;
-        }
-      }
-      throw error;
+    catchError(error => {
+      console.log('Interceptor caught error:', error); // Debug log (optional)
+      alert(`Error ${error.status}: ${error.message}`); // Simple alert with error details
+      return throwError(() => error); // Pass the original error unchanged
     })
   );
+  // console.log('Interceptor triggered for request:', req.urlWithParams); // Debug log for all requests
+  // const router = inject(Router);
+  // const toastr = inject(ToastrService);
+  // alert();
+  // return next(req).pipe(
+  //   catchError(error => {
+  //     console.log('Interceptor caught error:', error); // Debug log for errors
+  //     if (error) {
+  //       switch (error.status) {
+  //         case 400:
+  //           if (error.error.errors) {
+  //             const modelStateErrors: string[] = []; // Explicitly typed as string[]
+  //             for (const key in error.error.errors) {
+  //               if (error.error.errors[key]) {
+  //                 modelStateErrors.push(...error.error.errors[key]); // Spread to flatten arrays
+  //               }
+  //             }
+  //             return throwError(() => modelStateErrors);
+  //           } else {
+  //             toastr.error(error.error, error.status.toString());
+  //           }
+  //           break;
+  //         case 401:
+  //           toastr.error('Unauthorized', error.status.toString());
+  //           break;
+  //         case 404:
+  //           router.navigateByUrl('/not-found');
+  //           break;
+  //         case 500:
+  //           const navigationExtras: NavigationExtras = { state: { error: error.error } };
+  //           router.navigateByUrl('/server-error', navigationExtras);
+  //           break;
+  //         default:
+  //           toastr.error('Something unexpected went wrong');
+  //           break;
+  //       }
+  //     }
+  //     throw error;
+  //   })
+  // );
 };
