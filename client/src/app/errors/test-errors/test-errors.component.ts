@@ -17,7 +17,9 @@ export class TestErrorsComponent {
   get400Error(){
     this.http.get(this.baseUrl+"Buggy/bad-request").subscribe({
       next: (response) => console.log(response),
-      error: error => console.log(error)
+      error: error => {
+        console.log(error);
+      }
     })
   }
   get401Error(){
@@ -40,40 +42,14 @@ export class TestErrorsComponent {
     })
   }
   
-  // get400ValidationError(){
-  //   this.http.post(this.baseUrl+"Account/register",{}).subscribe({
-  //     next: (response) => console.log(response),
-  //     error: error =>{
-  //        console.log(error)
-  //        alert();
-  //        debugger;
-  //        this.validationErrors = error.error;
-  //     }
-  //   })
-  // }
-
-  get400ValidationError() {
-  this.http.post(this.baseUrl + "Account/register", {}).subscribe({
-    next: (response) => console.log(response),
-    error: error => {
-      console.log('Error response:', error); // Log the full error for debugging
-      if (error.error && Array.isArray(error.error)) {
-        // If error.error is already an array
-        this.validationErrors = error.error;
-      } else if (error.error && error.error.errors) {
-        // If error.error.errors is an object (ASP.NET Core validation format)
-        this.validationErrors = [];
-        for (const key in error.error.errors) {
-          if (error.error.errors[key]) {
-            this.validationErrors.push(...error.error.errors[key]);
-          }
-        }
-      } else {
-        // Fallback for unexpected error formats
-        this.validationErrors = ['An unexpected error occurred'];
+  get400ValidationError(){
+    this.http.post(this.baseUrl+"Account/register",{}).subscribe({
+      next: (response) => console.log(response),
+      error: error =>{
+         console.log(error)
+         this.validationErrors = error;
       }
-      console.log('Validation Errors:', this.validationErrors); // Log the processed errors
-    }
-  });
-}
+    })
+  }
+
 }

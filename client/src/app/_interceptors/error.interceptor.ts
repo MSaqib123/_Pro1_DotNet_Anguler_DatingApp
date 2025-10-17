@@ -1,3 +1,5 @@
+
+
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
@@ -19,10 +21,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
               const modelStateErrors: string[] = []; // Explicitly typed as string[]
               for (const key in error.error.errors) {
                 if (error.error.errors[key]) {
-                  modelStateErrors.push(...error.error.errors[key]); // Spread to flatten arrays
+                  modelStateErrors.push(error.error.errors[key]); // Spread to flatten arrays
                 }
               }
-              return throwError(() => modelStateErrors);
+              throw modelStateErrors.flat();
             } else {
               toastr.error(error.error);
             }
