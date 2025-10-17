@@ -50,7 +50,7 @@ public class AccountController : BaseApiController
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Register(LoginDto loginDto)
     {
-        var user = await _context.AppUsers.FirstOrDefaultAsync(x=>x.UserName == loginDto.Username.ToLower());
+        var user = await _context.Users.FirstOrDefaultAsync(x=>x.UserName == loginDto.Username.ToLower());
         if (user == null) return Unauthorized("Invalid Crediental");
         
         using var hmac = new HMACSHA512(user.PasswordSalt);
@@ -69,6 +69,6 @@ public class AccountController : BaseApiController
 
     private async Task<bool> UserExists(string Username)
     {
-        return await _context.AppUsers.AnyAsync(x => x.UserName.ToLower() == Username.ToLower());
+        return await _context.Users.AnyAsync(x => x.UserName.ToLower() == Username.ToLower());
     }
 }

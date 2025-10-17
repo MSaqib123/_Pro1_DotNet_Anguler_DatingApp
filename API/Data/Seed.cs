@@ -9,7 +9,7 @@ public class Seed
 {
     public static async Task SeedUsers(DataContext context)
     {
-        if (context.AppUsers.Any()) return;
+        if (context.Users.Any()) return;
 
         var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
         var options = new System.Text.Json.JsonSerializerOptions
@@ -24,7 +24,7 @@ public class Seed
             user.UserName = user.UserName.ToLower();
             user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pas$$w0rd"));
             user.PasswordSalt = hmac.Key;
-            context.AppUsers.Add(user);
+            context.Users.Add(user);
         }
 
         context.SaveChanges();

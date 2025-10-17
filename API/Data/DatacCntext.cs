@@ -3,5 +3,5 @@ using Microsoft.EntityFrameworkCore;
 
 public class DataContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<AppUsers> AppUsers{ get; set; }
+    public DbSet<AppUsers> Users{ get; set; }
 }
