@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-test-errors',
-    imports: [HttpClientModule], // Add HttpClientModule here
+  //imports: [HttpClientModule], // Add HttpClientModule here
+    imports: [CommonModule], // Add HttpClientModule here
   templateUrl: './test-errors.component.html',
   styleUrl: './test-errors.component.css'
 })

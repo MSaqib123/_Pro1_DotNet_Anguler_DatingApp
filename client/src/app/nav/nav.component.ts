@@ -17,6 +17,8 @@ export class NavComponent {
   private router = inject(Router);
   private notyf = inject(NotyfService);
 
+  
+
   model:any = {};
   login(){
     this.accountService.login(this.model).subscribe({
@@ -26,7 +28,7 @@ export class NavComponent {
       },
       error: error=> {
         console.log(error);
-        this.notyf.error("Login Faild");
+        // this.notyf.error("Login Faild");
       },
       complete: () => {
         console.log("✅ Request completed successfully");
