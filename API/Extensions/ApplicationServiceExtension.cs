@@ -7,6 +7,7 @@ using API.Data;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Services;
 
@@ -41,6 +42,8 @@ namespace API.Extensions
             });
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(cfg => { }, AppDomain.CurrentDomain.GetAssemblies());
+
             return services;
         }
     }
