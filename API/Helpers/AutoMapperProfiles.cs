@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 using AutoMapper;
+using AutoMapper.Execution;
 
 namespace API.Helpers
 {
@@ -12,8 +13,8 @@ namespace API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUsers, UserDto>();
-            CreateMap<UserDto, AppUsers>();
+            CreateMap<AppUsers, MemberDto>();
+            CreateMap<Photo, PhotoDto>();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +43,11 @@ namespace API.Extensions
             });
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddAutoMapper(cfg => { }, AppDomain.CurrentDomain.GetAssemblies());
+            
+            // ✅ CORRECT - Scans ALL assemblies for Profile classes
+            services.AddAutoMapper(typeof(AutoMapperProfiles));
+            // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            // services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             return services;
         }

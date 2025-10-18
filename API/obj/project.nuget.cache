@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ZlUijbQmIic=",
+  "dgSpecHash": "0TirO79JVuM=",
   "success": true,
   "projectFilePath": "D:\\Working\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\m4357\\.nuget\\packages\\automapper\\15.0.1\\automapper.15.0.1.nupkg.sha512",
+    "C:\\Users\\m4357\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\m4357\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.19\\microsoft.aspnetcore.authentication.jwtbearer.8.0.19.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
@@ -13,6 +14,7 @@
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.5.0\\microsoft.codeanalysis.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.5.0\\microsoft.codeanalysis.csharp.workspaces.4.5.0.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.5.0\\microsoft.codeanalysis.workspaces.common.4.5.0.nupkg.sha512",
+    "C:\\Users\\m4357\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.19\\microsoft.data.sqlite.core.8.0.19.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.19\\microsoft.entityframeworkcore.8.0.19.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.19\\microsoft.entityframeworkcore.abstractions.8.0.19.nupkg.sha512",
