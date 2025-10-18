@@ -1,1 +1,41 @@
-<p>{{member?.userName}}</p>
+@if(member)
+{
+    <div class="row">
+        <div class="col-4">
+            <div class="card mb-4 ">
+                <img [src]="member.photoUrl" class="card-img-top img-thumbnail" alt="{{ member.knownAs }}">
+                <div class="card-body">
+                    <!-- <h6 class="card-title mb-1">
+                        <i class="fa fa-user me-2"></i>
+                        {{ member.knownAs }}, {{ member.age }} 
+                    </h6>
+                    <p class="card-text text-muted mt-2">{{ member.city }}</p>
+                    <a [routerLink]="['/members', member.userName]" class="btn btn-primary">View Profile</a>
+                     -->
+                    <div>
+                        <strong>Location:</strong>
+                        <p>{{ member.city }} , {{ member.country }}</p>
+                    </div>
+                    <div>
+                        <strong>Age:</strong>
+                        <p>{{ member.age }}</p>
+                    </div>
+                    <div>
+                        <strong>Last Active:</strong>
+                        <p>{{ member.lastActive | date:'short' }}</p>
+                    </div>
+                    <div>
+                        <strong>Member since:</strong>
+                        <p>{{ member.created | date:'short' }}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group d-flex">
+                        <button class="btn btn-primary">Like</button>
+                        <button class="btn btn-success">Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
