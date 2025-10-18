@@ -4,10 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Member } from '../../_models/member';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-member-detail',
-  imports: [RouterLink,DatePipe],
+  imports: [RouterLink,DatePipe,NgbNavModule],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })
@@ -15,6 +17,8 @@ export class MemberDetailComponent implements OnInit {
   private memberService = inject(MembersService);
   private route = inject(ActivatedRoute);
   member?: Member;
+  active = 1;
+
   
   ngOnInit(): void {
     this.loadMember();

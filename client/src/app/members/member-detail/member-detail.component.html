@@ -1,41 +1,112 @@
 @if(member)
 {
-    <div class="row">
-        <div class="col-4">
-            <div class="card mb-4 ">
-                <img [src]="member.photoUrl" class="card-img-top img-thumbnail" alt="{{ member.knownAs }}">
-                <div class="card-body">
-                    <!-- <h6 class="card-title mb-1">
+<div class="row">
+    <div class="col-4">
+        <div class="card mb-4 ">
+            <img [src]="member.photoUrl" class="card-img-top img-thumbnail" alt="{{ member.knownAs }}">
+            <div class="card-body">
+                <!-- <h6 class="card-title mb-1">
                         <i class="fa fa-user me-2"></i>
                         {{ member.knownAs }}, {{ member.age }} 
                     </h6>
                     <p class="card-text text-muted mt-2">{{ member.city }}</p>
                     <a [routerLink]="['/members', member.userName]" class="btn btn-primary">View Profile</a>
                      -->
-                    <div>
-                        <strong>Location:</strong>
-                        <p>{{ member.city }} , {{ member.country }}</p>
-                    </div>
-                    <div>
-                        <strong>Age:</strong>
-                        <p>{{ member.age }}</p>
-                    </div>
-                    <div>
-                        <strong>Last Active:</strong>
-                        <p>{{ member.lastActive | date:'short' }}</p>
-                    </div>
-                    <div>
-                        <strong>Member since:</strong>
-                        <p>{{ member.created | date:'short' }}</p>
-                    </div>
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{ member.city }} , {{ member.country }}</p>
                 </div>
-                <div class="card-footer">
-                    <div class="btn-group d-flex">
-                        <button class="btn btn-primary">Like</button>
-                        <button class="btn btn-success">Message</button>
-                    </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{ member.age }}</p>
+                </div>
+                <div>
+                    <strong>Last Active:</strong>
+                    <p>{{ member.lastActive | date:'short' }}</p>
+                </div>
+                <div>
+                    <strong>Member since:</strong>
+                    <p>{{ member.created | date:'short' }}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Like</button>
+                    <button class="btn btn-success">Message</button>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    <div class="col-8">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs member-tabset">
+            <li [ngbNavItem]="1">
+                <button ngbNavLink>About {{member.knownAs}}</button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,
+                        retro synth
+                        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
+                        butcher retro
+                        keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
+                        Aliquip placeat
+                        salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                    </p>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <button ngbNavLink>Interests</button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four
+                        loko
+                        farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk
+                        aliquip jean shorts
+                        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus
+                        mollit. Keytar
+                        helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio
+                        cillum wes anderson
+                        8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party
+                        scenester
+                        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+                    </p>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+                <button ngbNavLink>Photos </button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam.
+                        Nulla facilisi.
+                        Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
+                        congue et odio.
+                        Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et.
+                        Sed diam urna,
+                        egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus
+                        nisl enim, nec
+                        tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                        penatibus et
+                        magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet
+                        ultricies in eget
+                        neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                    </p>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="4">
+                <button ngbNavLink>Messages </button>
+                <ng-template ngbNavContent>
+                    <p>
+                        Messages content goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                    </p>
+                </ng-template>
+            </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+        <pre>Active: {{ active }}</pre>
+    </div>
+</div>
 }
