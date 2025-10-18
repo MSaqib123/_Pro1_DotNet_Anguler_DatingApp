@@ -10,15 +10,12 @@ import { RegisterComponent } from "../register/register.component";
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent  {
   http = inject(HttpClient); 
 
   users: any;
   registerMode = false;
 
-  ngOnInit(): void {
-    this.getUsers();
-  }
 
   registerToggle(){
     this.registerMode = !this.registerMode;
@@ -34,19 +31,22 @@ export class HomeComponent implements OnInit  {
 
 
 
+  // ngOnInit(): void {
+  //   this.getUsers();
+  // }
 
-  getUsers(){
-     this.http.get('https://localhost:5001/api/user').subscribe({
-      next: (response) => {
-        console.log("✅ API Response:", response);  
-        this.users = response;                     
-      },
-      error: (error) => {
-        console.error("❌ API Error:", error);     
-      },
-      complete: () => {
-        console.log("✅ Request completed successfully");
-      }
-    });
-  }
+  // getUsers(){
+  //    this.http.get('https://localhost:5001/api/users').subscribe({
+  //     next: (response) => {
+  //       console.log("✅ API Response:", response);  
+  //       this.users = response;                     
+  //     },
+  //     error: (error) => {
+  //       console.error("❌ API Error:", error);     
+  //     },
+  //     complete: () => {
+  //       console.log("✅ Request completed successfully");
+  //     }
+  //   });
+  // }
 }

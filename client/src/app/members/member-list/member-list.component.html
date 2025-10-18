@@ -1,1 +1,14 @@
-<p>member-list works!</p>
+<div>
+    <h2>Member List</h2>
+    <ul>
+        <!-- <li *ngFor="let member of members">
+        {{ member.username }} - {{ member.age }} years old
+        </li> -->
+
+        @for (item of members; track $index) {
+            <li>
+                {{item.knownAs}}
+            </li>
+        }
+    </ul>
+</div>

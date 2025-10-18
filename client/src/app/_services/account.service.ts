@@ -9,7 +9,6 @@ import { environment } from '../../environments/environment';
 })
 export class AccountService {
   private http = inject(HttpClient);
-  // baseUrl = 'https://localhost:5001/api/';
   baseUrl = environment.apiUrl;
 
   // BAD

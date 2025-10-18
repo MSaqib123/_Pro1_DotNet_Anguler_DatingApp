@@ -28,7 +28,7 @@ export class NavComponent {
       },
       error: error=> {
         console.log(error);
-        // this.notyf.error("Login Faild");
+        this.notyf.error('Login Failed', 'Invalid username or password!');
       },
       complete: () => {
         console.log("✅ Request completed successfully");

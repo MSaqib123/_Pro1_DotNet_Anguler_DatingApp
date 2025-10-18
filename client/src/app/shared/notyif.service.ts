@@ -44,18 +44,29 @@ export class NotyfService {
     });
   }
 
-  success(message: string) {
-    this.notyf.success(message);
-  }
+  success(title: string, message?: string) {
+  this.notyf.success({
+    message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+    duration: 4000,
+    dismissible: true
+  });
+}
 
-  error(message: string) {
-    this.notyf.error(message);
-  }
+error(title: string, message?: string) {
+  this.notyf.error({
+    message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+    duration: 4000,
+    dismissible: true
+  });
+}
 
-  info(message: string) {
-    this.notyf.open({
-      type: 'info',
-      message,
-    });
-  }
+info(title: string, message?: string) {
+  this.notyf.open({
+    type: 'info',
+    message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+    duration: 4000,
+    dismissible: true
+  });
+}
+
 }
