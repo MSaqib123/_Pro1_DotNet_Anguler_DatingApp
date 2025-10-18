@@ -9,12 +9,13 @@ using AutoMapper.Execution;
 
 namespace API.Helpers
 {
-    
+
     public class AutoMapperProfiles : Profile
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUsers, MemberDto>();
+            CreateMap<AppUsers, MemberDto>()
+                .ForMember(d => d.PhotoUrl, o => o.MapFrom(s => s.Photos.FirstOrDefault(p => p.IsMain)!.Url));
             CreateMap<Photo, PhotoDto>();
         }
     }
