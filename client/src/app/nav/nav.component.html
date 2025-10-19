@@ -33,7 +33,7 @@
                     <button type="button" class="btn btn-primary">Welcome {{accountService?.currentUser()?.username | titlecase}}</button>
                     <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
                     <div class="dropdown-menu bg-primary" ngbDropdownMenu>
-                        <button ngbDropdownItem>Edit profile</button>
+                        <a ngbDropdownItem routerLink="/member/edit">Edit profile</a>
                         <button ngbDropdownItem (click)="logout()">Logout</button>
                     </div>
                 </div>
