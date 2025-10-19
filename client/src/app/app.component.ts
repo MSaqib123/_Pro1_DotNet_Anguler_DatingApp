@@ -6,6 +6,7 @@ import { NavComponent } from './nav/nav.component';
 import { ContainerComponent } from './shared/container/container.component';
 import { AccountService } from './_services/account.service';
 import { HomeComponent } from './home/home.component';
+import { NgxSpinnerComponent } from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,9 @@ import { HomeComponent } from './home/home.component';
     RouterOutlet,
     NavComponent,
     ContainerComponent,
-    HomeComponent
-  ],
+    HomeComponent,
+    NgxSpinnerComponent
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'] // Fix: Use styleUrls (plural)
 })
