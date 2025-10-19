@@ -3,10 +3,16 @@ import { Member } from '../../_models/member';
 import { AccountService } from '../../_services/account.service';
 import { MembersService } from '../../_services/members.service';
 import { NotyfService } from '../../shared/notyif.service';
+import { DatePipe } from '@angular/common';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { GalleryModule, GalleryItem, ImageItem } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox'; 
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-member-edit',
-  imports: [],
+  imports: [DatePipe,NgbNavModule,GalleryModule,LightboxModule,FormsModule],
   templateUrl: './member-edit.component.html',
   styleUrl: './member-edit.component.css'
 })
@@ -15,6 +21,7 @@ export class MemberEditComponent implements OnInit {
   private accountService = inject(AccountService);
   private memberService = inject(MembersService);
   private toaster = inject(NotyfService);
+  active = 1;  
 
   ngOnInit(): void {
     this.loadMember();

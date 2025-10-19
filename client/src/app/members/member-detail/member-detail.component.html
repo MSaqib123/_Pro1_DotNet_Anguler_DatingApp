@@ -45,33 +45,18 @@
             <li [ngbNavItem]="1">
                 <button ngbNavLink>About {{member.knownAs}}</button>
                 <ng-template ngbNavContent>
-                    <p>
-                        Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,
-                        retro synth
-                        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-                        butcher retro
-                        keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
-                        Aliquip placeat
-                        salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-                    </p>
+                    <h1>Description</h1>
+                       <p>{{ member.introduction }}</p>
+
+                       <h1>Looking for</h1>
+                       <p>{{ member.lookingFor }}</p>
                 </ng-template>
             </li>
             <li [ngbNavItem]="2">
                 <button ngbNavLink>Interests</button>
                 <ng-template ngbNavContent>
-                    <p>
-                        Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four
-                        loko
-                        farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk
-                        aliquip jean shorts
-                        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus
-                        mollit. Keytar
-                        helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio
-                        cillum wes anderson
-                        8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party
-                        scenester
-                        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
-                    </p>
+                    <h1>Interests</h1>
+                    <p>{{ member.interests }}</p>
                 </ng-template>
             </li>
             <li [ngbNavItem]="3" >
@@ -96,8 +81,6 @@
         </ul>
 
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
-
-        <pre>Active: {{ active }}</pre>
     </div>
 </div>
 }
