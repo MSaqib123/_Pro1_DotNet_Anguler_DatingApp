@@ -36,7 +36,7 @@ public class UsersController(IUserRepository userRepository, IMapper mapper) : B
     }
 
 
-    [HttpPut]
+    [HttpPut()]
     public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
     {
         var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
