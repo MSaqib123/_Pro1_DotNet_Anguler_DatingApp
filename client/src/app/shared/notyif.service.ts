@@ -43,30 +43,86 @@ export class NotyfService {
       ],
     });
   }
+  private showNotification(
+    type: 'success' | 'error' | 'info',
+    title: string,
+    message?: string
+  ) {
+    const config = {
+      message:
+        message === undefined
+          ? title
+          : `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+      duration: 4000,
+      dismissible: true,
+    };
+
+    if (type === 'info') {
+      this.notyf.open({ ...config, type: 'info' });
+    } else {
+      this.notyf[type](config);
+    }
+  }
 
   success(title: string, message?: string) {
-  this.notyf.success({
-    message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
-    duration: 4000,
-    dismissible: true
-  });
-}
+    this.showNotification('success', title, message);
+  }
 
-error(title: string, message?: string) {
-  this.notyf.error({
-    message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
-    duration: 4000,
-    dismissible: true
-  });
-}
+  error(title: string, message?: string) {
+    this.showNotification('error', title, message);
+  }
 
-info(title: string, message?: string) {
-  this.notyf.open({
-    type: 'info',
-    message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
-    duration: 4000,
-    dismissible: true
-  });
-}
+  info(title: string, message?: string) {
+    this.showNotification('info', title, message);
+  }
 
+  // success(title: string, message?: string) {
+  //   if (message === undefined) {
+  //     this.notyf.success({
+  //       message: `${title}`,
+  //       duration: 4000,
+  //       dismissible: true,
+  //     });
+  //   } else {
+  //     this.notyf.success({
+  //       message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+  //       duration: 4000,
+  //       dismissible: true,
+  //     });
+  //   }
+  // }
+
+  // error(title: string, message?: string) {
+  //   if (message === undefined) {
+  //     this.notyf.error({
+  //       message: `${title}`,
+  //       duration: 4000,
+  //       dismissible: true,
+  //     });
+  //   } else {
+  //     this.notyf.error({
+  //       message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+  //       duration: 4000,
+  //       dismissible: true,
+  //     });
+  //   }
+  // }
+
+  // info(title: string, message?: string) {
+  //   if (message === undefined) {
+  //     this.notyf.open({
+  //       type: 'info',
+  //       message: `${title}`,
+  //       duration: 4000,
+  //       dismissible: true,
+  //     });
+  //   } else {
+  //     this.notyf.open({
+  //       type: 'info',
+  //       message: `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+  //       duration: 4000,
+  //       dismissible: true,
+  //     });
+  //   }
+  // }
 }
