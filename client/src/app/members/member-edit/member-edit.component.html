@@ -91,7 +91,7 @@
             <li [ngbNavItem]="2">
                 <button ngbNavLink>Edit Photo</button>
                 <ng-template ngbNavContent>
-                    <app-photo-editor [member] = "member"></app-photo-editor>
+                    <app-photo-editor [member] = "member" (memberChange)="onMemberChange($event)"></app-photo-editor>
                 </ng-template>
             </li>
 

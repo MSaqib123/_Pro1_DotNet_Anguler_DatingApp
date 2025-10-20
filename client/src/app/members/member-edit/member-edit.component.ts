@@ -62,7 +62,10 @@ export class MemberEditComponent implements OnInit {
         this.toaster.error(err.message);
       }
     });
-    // this.toaster.success("Profile updated successfully");
-    // this.editForm.reset(this.member);
+  }
+
+
+  onMemberChange(event:Member){
+    this.member = event;
   }
 }
