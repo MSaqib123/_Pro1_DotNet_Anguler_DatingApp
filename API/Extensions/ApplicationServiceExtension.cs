@@ -44,12 +44,12 @@ namespace API.Extensions
             });
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IPhotoService,PhotoService>();
 
             // ✅ CORRECT - Scans ALL assemblies for Profile classes
             //intall  AutoMapper.Extensions.Microsoft.DependencyInjection
             services.AddAutoMapper(typeof(AutoMapperProfiles));
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+            services.AddScoped<IPhotoService,PhotoService>();
 
             return services;
         }
