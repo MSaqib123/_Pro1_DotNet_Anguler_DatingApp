@@ -29,6 +29,10 @@
             @if(accountService.currentUser()){
 
             <div class="btn-group me-3">
+                <img 
+                    src="{{accountService.currentUser()?.photoUrl || './assets/user.png'}}" 
+                    class="img"
+                    alt="">
                 <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
                     <button type="button" class="btn btn-primary">Welcome {{accountService?.currentUser()?.username | titlecase}}</button>
                     <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
