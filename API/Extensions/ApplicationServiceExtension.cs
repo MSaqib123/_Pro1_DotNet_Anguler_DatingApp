@@ -43,11 +43,11 @@ namespace API.Extensions
             });
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            
+
             // ✅ CORRECT - Scans ALL assemblies for Profile classes
+            //intall  AutoMapper.Extensions.Microsoft.DependencyInjection
             services.AddAutoMapper(typeof(AutoMapperProfiles));
-            // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            // services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
 
             return services;
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0TirO79JVuM=",
+  "dgSpecHash": "cf0n9JUDNH4=",
   "success": true,
-  "projectFilePath": "D:\\Working\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
+  "projectFilePath": "D:\\Working\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\m4357\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
