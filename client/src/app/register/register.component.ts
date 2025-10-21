@@ -51,10 +51,12 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup,ReactiveFormsModul
 import { AccountService } from '../_services/account.service';
 import { JsonPipe, NgIf } from '@angular/common';
 import { TextInputComponent } from "../_forms/text-input/text-input.component";
+import { DatePickerComponent } from "../_forms/date-picker/date-picker.component";
+import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, JsonPipe, NgIf, TextInputComponent],
+  imports: [ReactiveFormsModule, JsonPipe, NgIf, TextInputComponent, DatePickerComponent,NgbDatepicker],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

@@ -1,0 +1,23 @@
+.form-floating {
+      position: relative;
+    }
+    .form-control {
+      height: calc(3.5rem + 2px);
+      line-height: 1.25;
+    }
+    .btn-calendar {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #6c757d;
+    }
+    .invalid-feedback {
+      display: none;
+    }
+    .is-invalid ~ .invalid-feedback {
+      display: block;
+    }
