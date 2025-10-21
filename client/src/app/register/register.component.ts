@@ -47,12 +47,13 @@
 // #region  Section 11 to 20
 
 import { Component, inject, input, OnInit, output, Output } from '@angular/core';
-import { FormControl, FormGroup,ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,JsonPipe],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -69,9 +70,9 @@ export class RegisterComponent implements OnInit {
   }
   initializeForm(){
     this.registerForm = new FormGroup({
-      userName: new FormControl(''),
-      password: new FormControl(''),
-      confirmPassword: new FormControl(''),
+      userName: new FormControl('',Validators.required),
+      password: new FormControl('',[Validators.required,Validators.minLength(4), Validators.maxLength(8)]),
+      confirmPassword: new FormControl('',[Validators.required]),
     })
   }
 
