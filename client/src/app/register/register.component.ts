@@ -46,13 +46,14 @@
 
 // #region  Section 11 to 20
 
-import { Component, inject, input, OnInit, output, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup,ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { Component, inject, input, OnInit, output} from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup,ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { JsonPipe, NgIf } from '@angular/common';
 import { TextInputComponent } from "../_forms/text-input/text-input.component";
 import { DatePickerComponent } from "../_forms/date-picker/date-picker.component";
 import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -62,11 +63,12 @@ import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegisterComponent implements OnInit {
   private accountService = inject(AccountService);
+  private router= inject(Router);
   private fb = inject(FormBuilder);
   userFromHomeComponent = input.required<any>();
   cancelRegister = output<boolean>();
-  model:any={};
   registerForm : FormGroup = new FormGroup({});
+  validationErrors:string[] | undefined;
 
   ngOnInit(): void {
     this.initializeForm();
@@ -105,21 +107,26 @@ export class RegisterComponent implements OnInit {
   }
 
   regsiter(){
-    console.log(this.registerForm.value);
-    // this.accountService.register(this.model).subscribe({
-    //   next:(response)=>{
-    //     console.log(response);
-    //     this.cancel();
-    //   },
-    //   error:(error)=>console.log(error),
-    //   complete:()=> console.log("..")
-    // })
+
+    const dob = this.getDateOnly(this.registerForm.get('dateOfBirth')?.value);
+    this.registerForm.patchValue({dateOfBirth:dob}); 
+    this.accountService.register(this.registerForm.value).subscribe({
+      next:_=>this.router.navigateByUrl('/members'),
+      error:(error)=>{
+        this.validationErrors = error;
+      },
+      complete:()=> console.log("..")
+    })
   }
 
   cancel(){
     this.cancelRegister.emit(false);
   }
 
+  private getDateOnly(dob:string | undefined){
+    if(!dob) return;
+    return new Date(dob).toISOString().slice(0,10);
+  }
   
 }
 
