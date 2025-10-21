@@ -19,6 +19,10 @@ namespace API.Helpers
             CreateMap<Photo, PhotoDto>();
 
             CreateMap<MemberUpdateDto, AppUsers>();
+
+            //Registration Mapper
+            CreateMap<RegisterDto, AppUsers>();
+            CreateMap<string, DateOnly>().ConvertUsing(s=>DateOnly.Parse(s));
         }
     }
 }
