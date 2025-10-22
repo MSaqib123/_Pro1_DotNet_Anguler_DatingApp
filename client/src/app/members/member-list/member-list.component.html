@@ -6,67 +6,74 @@
         <form #form="ngForm" (ngSubmit)="loadMembers()" class="d-flex justify-content-center mb-4">
             <div class="d-flex mx-2">
                 <label class="col-form-label">Age from: </label>
-                <input
-                    class="form-control ms-1"
-                    style="width:70px"
-                    type="number"
-                    name="minAge"
-                    [(ngModel)]="userParams.minAge"
-                    />
+                <input class="form-control ms-1" style="width:70px" type="number" name="minAge"
+                    [(ngModel)]="userParams.minAge" />
             </div>
             <div class="d-flex mx-2">
                 <label class="col-form-label">Age To: </label>
-                <input
-                    class="form-control ms-1"
-                    style="width:70px"
-                    type="number"
-                    name="maxAge"
-                    [(ngModel)]="userParams.maxAge"
-                    />
+                <input class="form-control ms-1" style="width:70px" type="number" name="maxAge"
+                    [(ngModel)]="userParams.maxAge" />
             </div>
 
             <div class="d-flex mx-2">
                 <label class="col-form-label">Show: </label>
-                <select name="gender" style="width:130px" 
-                    class="form-select form-select-sm ms-1"
-                    [(ngModel)]="userParams.gender"
-                    >
+                <select name="gender" style="width:130px" class="form-select form-select-sm ms-1"
+                    [(ngModel)]="userParams.gender">
                     @for(gender of genderList; track gender.value){
-                        <option [value]="gender.value">
-                            {{gender.display}}
-                        </option>
+                    <option [value]="gender.value">
+                        {{gender.display}}
+                    </option>
                     }
                 </select>
             </div>
 
-            <button class="btn btn-primary ms-1" type="submit" >Filter</button>
-            <button (click)="resetFilter()"  class="btn btn-info ms-1" type="button">Reset</button>
+            <button class="btn btn-primary ms-1" type="submit">Filter</button>
+            <button (click)="resetFilter()" class="btn btn-info ms-1" type="button">Reset</button>
+
+            <div class="btn-group ms-3" role="group" aria-label="Basic example">
+                <div class="btn-group" role="group" aria-label="Order By">
+                    <input type="radio" class="btn-check" name="orderBy" id="orderByLastActive"
+                        [(ngModel)]="userParams.orderBy" value="lastActive" (change)="loadMembers()" />
+                    <label class="btn btn-outline-primary" for="orderByLastActive">Last Active</label>
+
+                    <input type="radio" class="btn-check" name="orderBy" id="orderByCreated"
+                        [(ngModel)]="userParams.orderBy" value="created" (change)="loadMembers()" />
+                    <label class="btn btn-outline-primary" for="orderByCreated">Newest Members</label>
+                </div>
+
+            </div>
+
+            <!-- <div class="btn-group" role="group" ngbRadioGroup name="radioBasic">
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" class="btn-check" [value]="1"> Left (pre-checked)
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" class="btn-check" value="middle"> Middle
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" class="btn-check" [value]="false"> Right
+                </label>
+            </div> -->
+            <hr>
 
         </form>
     </div>
     @for (item of memberService.paginatedResult()?.items; track $index) {
-            <div class="col-2">
-                <app-member-card [member]="item"></app-member-card>
-            </div>
-        }
+    <div class="col-2">
+        <app-member-card [member]="item"></app-member-card>
+    </div>
+    }
 </div>
 
-        <!-- collectionSize      total number of items (total items in table)-->
-        <!-- pageSize            items per page (# of pagination pages)-->
-        <!-- page                The current page.-->
+<!-- collectionSize      total number of items (total items in table)-->
+<!-- pageSize            items per page (# of pagination pages)-->
+<!-- page                The current page.-->
 <div class="d-flex justify-content-center">
-    <ngb-pagination
-    class=" justify-content-center align-item-center justify-item-center"
-	[boundaryLinks]="true"
-	[collectionSize]="memberService.paginatedResult()?.pagination!.totalItems"
-	[pageSize]="memberService.paginatedResult()?.pagination!.itemsPerPage"
-    [page] = "userParams.pageNumber"
-    (pageChange) = 'pageChanged($event)'
-	[maxSize]="memberService.paginatedResult()?.pagination!.totalItems"
-	[rotate]="true"
-	[ellipses]="true"
-    
-/>
+    <ngb-pagination class=" justify-content-center align-item-center justify-item-center" [boundaryLinks]="true"
+        [collectionSize]="memberService.paginatedResult()?.pagination!.totalItems"
+        [pageSize]="memberService.paginatedResult()?.pagination!.itemsPerPage" [page]="userParams.pageNumber"
+        (pageChange)='pageChanged($event)' [maxSize]="memberService.paginatedResult()?.pagination!.totalItems"
+        [rotate]="true" [ellipses]="true" />
 </div>
 <hr />
 <pre class="text-center">Current page: {{ userParams.pageNumber }}</pre>

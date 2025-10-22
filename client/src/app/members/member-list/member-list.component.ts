@@ -6,16 +6,17 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from '../../_services/account.service';
 import { UserParams } from '../../_models/userParams';
 import { FormsModule } from '@angular/forms';
-
+import { NgbNavLinkButton } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-member-list',
-  imports: [MemberCardComponent,NgbPaginationModule,FormsModule],
+  imports: [MemberCardComponent,NgbPaginationModule,FormsModule,NgbNavLinkButton],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.css'
 })
 export class MemberListComponent implements OnInit {
   private accountService = inject(AccountService);
+  
   memberService = inject(MembersService);
   // pageNumber = 1;
   // pageSize = 5;
