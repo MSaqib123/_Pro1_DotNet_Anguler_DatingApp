@@ -5,7 +5,8 @@
         {{ member.username }} - {{ member.age }} years old
         </li> 
     </ul> -->
-    @for (item of memberService.members(); track $index) {
+    <!-- @for (item of memberService.members(); track $index) { -->
+    @for (item of memberService.paginatedResult()?.items; track $index) {
             <div class="col-2">
                 <app-member-card [member]="item"></app-member-card>
             </div>
