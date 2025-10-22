@@ -5,20 +5,22 @@ import { MemberCardComponent } from "../member-card/member-card.component";
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from '../../_services/account.service';
 import { UserParams } from '../../_models/userParams';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-member-list',
-  imports: [MemberCardComponent,NgbPaginationModule],
+  imports: [MemberCardComponent,NgbPaginationModule,FormsModule],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.css'
 })
 export class MemberListComponent implements OnInit {
   private accountService = inject(AccountService);
   memberService = inject(MembersService);
-  userParams = new UserParams(this.accountService.currentUser());
   // pageNumber = 1;
   // pageSize = 5;
+  userParams = new UserParams(this.accountService.currentUser());
+  genderList= [{value:'male',display:'Males'},{value:'female', display:'Females'}]
 
   ngOnInit(): void {
     // if(this.memberService.members().length===0) this.loadMembers();
@@ -27,6 +29,11 @@ export class MemberListComponent implements OnInit {
 
   loadMembers(){
     this.memberService.getMembers(this.userParams);
+  }
+
+  resetFilter(){
+    this.userParams = new UserParams(this.accountService.currentUser());
+    this.loadMembers();
   }
 
 
