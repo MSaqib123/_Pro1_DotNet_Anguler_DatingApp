@@ -11,4 +11,32 @@
                 <app-member-card [member]="item"></app-member-card>
             </div>
         }
+
+
+        <!-- collectionSize      total number of items (total items in table)-->
+        <!-- pageSize            items per page (# of pagination pages)-->
+        <!-- page                The current page.-->
+<div class="d-flex justify-content-center">
+    <ngb-pagination
+    class=" justify-content-center align-item-center justify-item-center"
+	[boundaryLinks]="true"
+	[collectionSize]="memberService.paginatedResult()?.pagination!.totalItems"
+	[pageSize]="memberService.paginatedResult()?.pagination!.itemsPerPage"
+    [page] = "pageNumber"
+    (pageChange) = 'pageChanged($event)'
+	[maxSize]="memberService.paginatedResult()?.pagination!.totalItems"
+	[rotate]="true"
+	[ellipses]="true"
+    
+/>
 </div>
+<hr />
+<pre class="text-center">Current page: {{ pageNumber }}</pre>
+
+
+<!-- 
+<p>Restricted size, no rotation:</p>
+<ngb-pagination [collectionSize]="120" [(page)]="pageNumber" [maxSize]="5" [boundaryLinks]="true" />
+
+<p>Restricted size with rotation:</p>
+<ngb-pagination [collectionSize]="120" [(page)]="pageNumber" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" /> -->
