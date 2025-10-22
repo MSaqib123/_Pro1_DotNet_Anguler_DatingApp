@@ -23,6 +23,14 @@ namespace API.Helpers
             get => _pageSize;
             set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
+
+
+        public string? Gender { get; set; }
+
+        //Exclude current login user from the result
+        public string? CurrentUsername{ get; set; }
+
+
         
     }
 }
