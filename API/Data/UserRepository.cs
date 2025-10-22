@@ -60,7 +60,13 @@ public class UserRepository(DataContext _context,IMapper mapper) : IUserReposito
         if (userParams.Gender != null)
         {
             query = query.Where(x => x.Gender == userParams.Gender);
-        } 
+        }
+
+        // Age Filtration
+        var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge-1));
+        var maxDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MinAge));
+        query = query.Where(x => x.DateOfBirth >= minDob && x.DateOfBirth <= maxDob);
+
         return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(
                 mapper.ConfigurationProvider),
                 userParams.PageNumber,

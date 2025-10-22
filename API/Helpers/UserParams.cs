@@ -28,9 +28,10 @@ namespace API.Helpers
         public string? Gender { get; set; }
 
         //Exclude current login user from the result
-        public string? CurrentUsername{ get; set; }
+        public string? CurrentUsername { get; set; }
 
 
-        
+        public int MinAge { get; set; } = 18;
+        public int MaxAge { get; set; } = 100;
     }
 }
