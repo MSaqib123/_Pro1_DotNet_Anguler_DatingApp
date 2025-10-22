@@ -22,7 +22,7 @@
 	[boundaryLinks]="true"
 	[collectionSize]="memberService.paginatedResult()?.pagination!.totalItems"
 	[pageSize]="memberService.paginatedResult()?.pagination!.itemsPerPage"
-    [page] = "pageNumber"
+    [page] = "userParams.pageNumber"
     (pageChange) = 'pageChanged($event)'
 	[maxSize]="memberService.paginatedResult()?.pagination!.totalItems"
 	[rotate]="true"
@@ -31,7 +31,7 @@
 />
 </div>
 <hr />
-<pre class="text-center">Current page: {{ pageNumber }}</pre>
+<pre class="text-center">Current page: {{ userParams.pageNumber }}</pre>
 
 
 <!-- 

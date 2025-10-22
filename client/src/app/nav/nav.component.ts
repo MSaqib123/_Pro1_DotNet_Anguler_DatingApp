@@ -18,7 +18,6 @@ export class NavComponent {
   private notyf = inject(NotyfService);
 
   
-
   model:any = {};
   login(){
     this.accountService.login(this.model).subscribe({
