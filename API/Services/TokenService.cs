@@ -29,7 +29,8 @@ namespace Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
             var claims = new List<Claim>
             {
-                new(ClaimTypes.NameIdentifier,user.UserName)
+                new(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                new(ClaimTypes.Name,user.UserName)
             };
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);

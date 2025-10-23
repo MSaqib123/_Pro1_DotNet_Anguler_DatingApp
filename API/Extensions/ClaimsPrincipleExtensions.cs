@@ -11,7 +11,19 @@ public static class ClaimsPrincipleExtensions
         // if (username == null) throw new Exception("Cannot get username from token");
 
         // Null Coalescing Operator (??)
-        var username = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? throw new Exception("Cannot get username from token");
+        var username = user.FindFirstValue(ClaimTypes.Name) 
+                ?? throw new Exception("Cannot get username from token");
         return username;
+    }
+
+    public static int GetUserId(this ClaimsPrincipal user)
+    {
+        // var username = user.FindFirstValue(ClaimTypes.NameIdentifier);
+        // if (username == null) throw new Exception("Cannot get username from token");
+
+        // Null Coalescing Operator (??)
+        var userId = int.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier) 
+                ?? throw new Exception("Cannot get username from token"));
+        return userId;
     }
 }
