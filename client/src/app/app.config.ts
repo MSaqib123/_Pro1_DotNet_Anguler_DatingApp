@@ -8,6 +8,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { loadingInterceptor } from './_interceptors/loading.interceptor';
+import { TimeagoModule } from 'ngx-timeago';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor,loadingInterceptor])),
-    importProvidersFrom(BrowserAnimationsModule,NgxSpinnerModule)
+    importProvidersFrom(BrowserAnimationsModule,NgxSpinnerModule,TimeagoModule.forRoot())
   ],
 };

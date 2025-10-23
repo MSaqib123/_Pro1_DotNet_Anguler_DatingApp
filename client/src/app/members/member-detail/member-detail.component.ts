@@ -7,12 +7,13 @@ import { DatePipe } from '@angular/common';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { GalleryModule, GalleryItem, ImageItem } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox'; 
+import { TimeagoModule } from 'ngx-timeago';
 
 
 
 @Component({
   selector: 'app-member-detail',
-  imports: [RouterLink,DatePipe,NgbNavModule,GalleryModule,LightboxModule],
+  imports: [RouterLink,DatePipe,NgbNavModule,GalleryModule,LightboxModule,TimeagoModule, DatePipe],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })

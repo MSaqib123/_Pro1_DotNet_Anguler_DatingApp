@@ -9,11 +9,12 @@ import { GalleryModule, GalleryItem, ImageItem } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox'; 
 import { FormsModule, NgForm } from '@angular/forms';
 import { PhotoEditorComponent } from "../photo-editor/photo-editor.component";
+import { TimeagoModule } from 'ngx-timeago';
 
 
 @Component({
   selector: 'app-member-edit',
-  imports: [DatePipe, NgbNavModule, GalleryModule, LightboxModule, FormsModule, PhotoEditorComponent],
+  imports: [DatePipe, NgbNavModule, GalleryModule, LightboxModule, FormsModule, PhotoEditorComponent,TimeagoModule, DatePipe],
   templateUrl: './member-edit.component.html',
   styleUrl: './member-edit.component.css'
 })
