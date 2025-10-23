@@ -1,1 +1,37 @@
-<p>lists works!</p>
+<div class="text-center mt-3">
+    <h2>{{getTitle()}}</h2>
+</div>
+
+<div class="container mt-3">
+    <div class="d-flex">
+
+        <div class="btn-group ms-3" role="group" aria-label="Basic example">
+                <div class="btn-group" role="group" aria-label="Order By">
+                    <input type="radio" class="btn-check" name="liked" id="liked"
+                        [(ngModel)]="predicate" value="liked" (change)="loadLikes()" />
+                    <label class="btn btn-outline-primary" for="liked">Members I like</label>
+
+                    <input type="radio" class="btn-check" name="likedBy" id="likedBy"
+                        [(ngModel)]="predicate" value="likedBy" (change)="loadLikes()" />
+                    <label class="btn btn-outline-primary" for="likedBy">Members who like me</label>
+
+                    <input type="radio" class="btn-check" name="mutual" id="mutual"
+                        [(ngModel)]="predicate" value="mutual" (change)="loadLikes()" />
+                    <label class="btn btn-outline-primary" for="mutual">Mutual</label>
+                </div>
+
+        </div>
+        
+
+    </div>
+
+    <div class="row mt-3">
+        @for(member of members; track member.id){
+            <div class="col-2">
+                <app-member-card [member]="member"></app-member-card>
+            </div>
+        }
+    </div>
+</div>
+
+
