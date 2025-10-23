@@ -7,18 +7,18 @@
             <div class="d-flex mx-2">
                 <label class="col-form-label">Age from: </label>
                 <input class="form-control ms-1" style="width:70px" type="number" name="minAge"
-                    [(ngModel)]="userParams.minAge" />
+                    [(ngModel)]="memberService.userParams().minAge" />
             </div>
             <div class="d-flex mx-2">
                 <label class="col-form-label">Age To: </label>
                 <input class="form-control ms-1" style="width:70px" type="number" name="maxAge"
-                    [(ngModel)]="userParams.maxAge" />
+                    [(ngModel)]="memberService.userParams().maxAge" />
             </div>
 
             <div class="d-flex mx-2">
                 <label class="col-form-label">Show: </label>
                 <select name="gender" style="width:130px" class="form-select form-select-sm ms-1"
-                    [(ngModel)]="userParams.gender">
+                    [(ngModel)]="memberService.userParams().gender">
                     @for(gender of genderList; track gender.value){
                     <option [value]="gender.value">
                         {{gender.display}}
@@ -33,11 +33,11 @@
             <div class="btn-group ms-3" role="group" aria-label="Basic example">
                 <div class="btn-group" role="group" aria-label="Order By">
                     <input type="radio" class="btn-check" name="orderBy" id="orderByLastActive"
-                        [(ngModel)]="userParams.orderBy" value="lastActive" (change)="loadMembers()" />
+                        [(ngModel)]="memberService.userParams().orderBy" value="lastActive" (change)="loadMembers()" />
                     <label class="btn btn-outline-primary" for="orderByLastActive">Last Active</label>
 
                     <input type="radio" class="btn-check" name="orderBy" id="orderByCreated"
-                        [(ngModel)]="userParams.orderBy" value="created" (change)="loadMembers()" />
+                        [(ngModel)]="memberService.userParams().orderBy" value="created" (change)="loadMembers()" />
                     <label class="btn btn-outline-primary" for="orderByCreated">Newest Members</label>
                 </div>
 
@@ -78,7 +78,7 @@
         [rotate]="true" [ellipses]="true" />
 </div>
 <hr />
-<pre class="text-center">Current page: {{ userParams.pageNumber }}</pre>
+<pre class="text-center">Current page: {{ memberService.userParams().pageNumber }}</pre>
 
 
 <!-- 

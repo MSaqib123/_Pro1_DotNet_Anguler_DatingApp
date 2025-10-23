@@ -15,12 +15,12 @@ import { NgbNavLinkButton } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './member-list.component.css'
 })
 export class MemberListComponent implements OnInit {
-  private accountService = inject(AccountService);
-  
+  //private accountService = inject(AccountService);
   memberService = inject(MembersService);
   // pageNumber = 1;
   // pageSize = 5;
-  userParams = new UserParams(this.accountService.currentUser());
+  //userParams = new UserParams(this.accountService.currentUser());
+
   genderList= [{value:'male',display:'Males'},{value:'female', display:'Females'}]
 
   ngOnInit(): void {
@@ -29,11 +29,11 @@ export class MemberListComponent implements OnInit {
   }
 
   loadMembers(){
-    this.memberService.getMembers(this.userParams);
+    this.memberService.getMembers();
   }
 
   resetFilter(){
-    this.userParams = new UserParams(this.accountService.currentUser());
+    this.memberService.resetUserParams();
     this.loadMembers();
   }
 
@@ -41,9 +41,9 @@ export class MemberListComponent implements OnInit {
 
   pageChanged(page:number){    
     console.log(page)
-    if(this.userParams.pageNumber !== page)
+    if(this.memberService.userParams().pageNumber !== page)
     {
-      this.userParams.pageNumber = page;
+      this.memberService.userParams().pageNumber = page;
       this.loadMembers();
     }
 
