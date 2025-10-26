@@ -118,5 +118,15 @@
     "C:\\Users\\m4357\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
     "C:\\Users\\m4357\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "D:\\Working\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Working\\Angular_DotNet_Project\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

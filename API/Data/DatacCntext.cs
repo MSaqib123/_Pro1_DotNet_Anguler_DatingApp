@@ -5,6 +5,7 @@ public class DataContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<AppUsers> Users{ get; set; }
     public DbSet<UserLike> Likes { get; set; }
+    public DbSet<Message> Messages { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -15,7 +16,9 @@ public class DataContext(DbContextOptions options) : DbContext(options)
 
         // Customizing the Keys of tables 
 
-        //
+        //===========
+        //=========== UserLike Relation ===========
+        //===========
         builder.Entity<UserLike>()
             .HasKey(k => new { k.SourceUserId, k.TargetUserId });
 
@@ -31,8 +34,19 @@ public class DataContext(DbContextOptions options) : DbContext(options)
             .WithMany(l => l.LikedByUsers)
             .HasForeignKey(s => s.TargetUserId)
             .OnDelete(DeleteBehavior.Cascade);
-            //NOTE======= on MSSQL  we set to   NoAction  
+        //NOTE======= on MSSQL  we set to   NoAction  
 
+        //===========
+        //=========== Messages Relation ===========
+        //===========
+        builder.Entity<Message>()
+            .HasOne(x => x.Recipient)
+            .WithMany(x => x.MessageReceived)
+            .OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<Message>()
+            .HasOne(x => x.Sender)
+            .WithMany(x => x.MessageSent)
+            .OnDelete(DeleteBehavior.Restrict);
         
 
     }

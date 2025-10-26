@@ -59,8 +59,7 @@ public class AppUsers
     // and set  foriegn key constraint
     #endregion  
 
-    // public int GetAge()
-    // {
-    //     return DateOfBirth.CalculateAge();
-    // }
+    public List<Message> MessageSent { get; set; } = [];
+    public List<Message> MessageReceived { get; set; } = [];
+
 }
