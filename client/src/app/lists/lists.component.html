@@ -22,10 +22,27 @@
     </div>
 
     <div class="row mt-3">
-        @for(member of members; track member.id){
+        @for(member of likesService.paginatedResult()?.items; track member.id){
             <div class="col-2">
                 <app-member-card [member]="member"></app-member-card>
             </div>
         }
     </div>
+
+
+    
+<!-- collectionSize      total number of items (total items in table)-->
+<!-- pageSize            items per page (# of pagination pages)-->
+<!-- page                The current page.-->
+<div class="d-flex justify-content-center">
+    <ngb-pagination 
+        class=" justify-content-center align-item-center justify-item-center" 
+        [boundaryLinks]="true"
+        [collectionSize]="likesService.paginatedResult()?.pagination!.totalItems"
+        [pageSize]="likesService.paginatedResult()?.pagination!.itemsPerPage" 
+        [page]="likesService.paginatedResult()?.pagination!.currentPage"
+        (pageChange)='pageChanged($event)' 
+        [maxSize]="likesService.paginatedResult()?.pagination!.totalItems"
+        [rotate]="true" [ellipses]="true" />
+</div>
 </div>
