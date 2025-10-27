@@ -8,6 +8,7 @@ using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
@@ -48,9 +49,34 @@ namespace API.Data
                     messageParams.PageSize);
         }
 
-        public Task<IEnumerable<MessageDto>?> GetMessageThread(string currentUsername, string recipientUsername)
+        public async Task<IEnumerable<MessageDto>?> GetMessageThread(string currentUsername, string recipientUsername)
         {
-            throw new NotImplementedException();
+            var messages = await context.Messages
+                .Include(x => x.Sender).ThenInclude(x => x.Photos)
+                .Include(x => x.Recipient).ThenInclude(x => x.Photos)
+                .Where(
+                    x =>
+                    x.RecipientUsername == currentUsername && x.SenderUsername == recipientUsername ||
+                    x.SenderUsername == currentUsername && x.RecipientUsername == recipientUsername
+                )
+                .OrderBy(x => x.MessageSent)
+                .ToListAsync();
+
+            var unreadMessage = messages
+                    .Where(x => x.DateRead == null && x.RecipientUsername == currentUsername).ToList();
+
+            if (unreadMessage.Count != 0)
+            {
+                unreadMessage.ForEach(x => x.DateRead = DateTime.UtcNow);
+                // entity is very genius no need  to defined any update
+                //it will automaticly understand that this record is being updated
+                await context.SaveChangesAsync();
+            }
+
+
+            return mapper.Map<IEnumerable<MessageDto>>(messages);
+            
+
         }
 
         public async Task<bool> SaveAllAsync()
