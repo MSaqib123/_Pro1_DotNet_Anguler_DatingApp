@@ -1,4 +1,74 @@
-@for(message of messageService.paginatedResult()?.items; track message.id)
-{
-    <p>{{message.content}}</p>
+<div class="container mt-3">
+    <div class="d-flex">
+        <div class="btn-group">
+             <input type="radio" class="btn-check" name="Unread" id="Unread"
+                [(ngModel)]="container" value="Unread" (change)="loadMessages()" />
+            <label class="btn btn-outline-primary" for="Unread">Unread</label>
+
+            <input type="radio" class="btn-check" name="Inbox" id="Inbox"
+                [(ngModel)]="container" value="Inbox" (change)="loadMessages()" />
+            <label class="btn btn-outline-primary" for="Inbox">Inbox</label>
+
+            <input type="radio" class="btn-check" name="Outbox" id="Outbox"
+                [(ngModel)]="container" value="Outbox" (change)="loadMessages()" />
+            <label class="btn btn-outline-primary" for="Outbox">Outbox</label>
+        </div>
+    </div>
+</div>
+
+@if (!messageService.paginatedResult()?.items) {
+    <h3>No Messages</h3>
+} @else {
+    <table class="table table-hover mt-3" style="cursor: pointer;">
+        <thead>
+            <tr>
+                <th style="width:40%">Message</th>
+                <th style="width:20%">From/To</th>
+                <th style="width:20%">Sent / Received</th>
+                <th style="width:20%"></th>
+            </tr>
+        </thead>
+        <tbody clas="align-middle">
+            @for (message of messageService.paginatedResult()?.items; track message.id) {
+                <tr routerLink="{{getRoute(message)}}">
+                    <td>{{ message.content }}</td>
+                    <td>
+                        <div>
+                            <img
+                                [src]="container === 'Outbox'
+                                    ? (message.recipientPhotoUrl || './asssets/user.png')
+                                    : (message.senderPhotoUrl || './asssets/user.png')"
+                                alt="image of user"
+                                class="rounded-circle"
+                            />
+                            <strong> {{container === 'Outbox' ? message.recipientUsername : message.senderUsername}}</strong>
+
+                        </div>
+                    </td>
+                    <td>{{ message.messageSent | timeago }}</td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+            } @empty {
+                <tr>
+                    <td colspan="4" class="text-center">No messages found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
+
+
+
+<!-- collectionSize      total number of items (total items in table)-->
+<!-- pageSize            items per page (# of pagination pages)-->
+<!-- page                The current page.-->
+<div class="d-flex justify-content-center">
+    <ngb-pagination class=" justify-content-center align-item-center justify-item-center" [boundaryLinks]="true"
+        [collectionSize]="messageService.paginatedResult()?.pagination!.totalItems"
+        [pageSize]="messageService.paginatedResult()?.pagination!.itemsPerPage" 
+        [page]="messageService.paginatedResult()?.pagination!.currentPage"
+        (pageChange)='pageChanged($event)' 
+        [maxSize]="messageService.paginatedResult()?.pagination!.totalItems"
+        [rotate]="true" [ellipses]="true" />
+</div>
+

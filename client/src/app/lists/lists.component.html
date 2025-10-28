@@ -4,7 +4,7 @@
 
 <div class="container mt-3">
     <div class="d-flex">
-        <div class="btn-group ms-3" role="group" aria-label="Basic example">
+        
             <div class="btn-group" role="group" aria-label="Order By">
                 <input type="radio" class="btn-check" name="liked" id="liked"
                     [(ngModel)]="predicate" value="liked" (change)="loadLikes()" />
@@ -18,7 +18,7 @@
                     [(ngModel)]="predicate" value="mutual" (change)="loadLikes()" />
                 <label class="btn btn-outline-primary" for="mutual">Mutual</label>
             </div>
-        </div>
+        
     </div>
 
     <div class="row mt-3">
