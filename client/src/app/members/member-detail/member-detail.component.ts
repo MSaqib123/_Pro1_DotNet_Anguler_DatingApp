@@ -8,12 +8,12 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { GalleryModule, GalleryItem, ImageItem } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox'; 
 import { TimeagoModule } from 'ngx-timeago';
-
+import { MemberMessageComponent  } from '../member-message/member-message.component';
 
 
 @Component({
   selector: 'app-member-detail',
-  imports: [RouterLink,DatePipe,NgbNavModule,GalleryModule,LightboxModule,TimeagoModule, DatePipe],
+  imports: [RouterLink, DatePipe, NgbNavModule, GalleryModule, LightboxModule, TimeagoModule, DatePipe, MemberMessageComponent],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })

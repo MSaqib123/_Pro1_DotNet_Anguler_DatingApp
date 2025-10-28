@@ -72,10 +72,7 @@
             <li [ngbNavItem]="4">
                 <button ngbNavLink>Messages </button>
                 <ng-template ngbNavContent>
-                    <p>
-                        Messages content goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                        eiusmod
-                    </p>
+                    <app-member-message [username]="member.userName"></app-member-message>
                 </ng-template>
             </li>
         </ul>
