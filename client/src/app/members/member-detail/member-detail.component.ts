@@ -13,7 +13,7 @@ import { MemberMessageComponent  } from '../member-message/member-message.compon
 
 @Component({
   selector: 'app-member-detail',
-  imports: [RouterLink, DatePipe, NgbNavModule, GalleryModule, LightboxModule, TimeagoModule, DatePipe, MemberMessageComponent],
+  imports: [RouterLink, DatePipe, NgbNavModule, GalleryModule, LightboxModule, TimeagoModule, DatePipe, MemberMessageComponent,TimeagoModule],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })
