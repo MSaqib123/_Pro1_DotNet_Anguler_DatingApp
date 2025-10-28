@@ -1,14 +1,16 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { MembersService } from '../../_services/members.service';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from '../../_models/member';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNav, NgbNavChangeEvent, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { GalleryModule, GalleryItem, ImageItem } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox'; 
 import { TimeagoModule } from 'ngx-timeago';
 import { MemberMessageComponent  } from '../member-message/member-message.component';
+import { Message } from '../../_models/message';
+import { MessageService } from '../../_services/message.service';
 
 
 @Component({
@@ -18,8 +20,11 @@ import { MemberMessageComponent  } from '../member-message/member-message.compon
   styleUrl: './member-detail.component.css'
 })
 export class MemberDetailComponent implements OnInit {
+  @ViewChild('nav', { static: true }) memberTabs!: NgbNav;
   private memberService = inject(MembersService);
+  private messageService = inject(MessageService);
   private route = inject(ActivatedRoute);
+  messagesList:Message[] =[];
   member?: Member;
   active = 1;  
   images: GalleryItem[] = []; 
@@ -44,5 +49,20 @@ export class MemberDetailComponent implements OnInit {
   }
 
 
+  messagesLoaded = false;
+  onTabChange($event: NgbNavChangeEvent) {
+    if ($event.nextId === 4 && !this.messagesLoaded) {
+      
+      this.messageService.getMessageThread(this.member!.userName).subscribe({
+        next: messages => {
+          alert();
+          console.log(messages)
+          this.messagesList = messages
+          console.log(this.messagesList)
+        }
+      })
+      this.messagesLoaded = true;
+    }
+  }
 
 }

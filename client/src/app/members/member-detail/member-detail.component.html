@@ -41,7 +41,7 @@
 
 
     <div class="col-8">
-        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs member-tabset">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onTabChange($event)" class="nav-tabs member-tabset">
             <li [ngbNavItem]="1">
                 <button ngbNavLink>About {{member.knownAs}}</button>
                 <ng-template ngbNavContent>
@@ -72,7 +72,7 @@
             <li [ngbNavItem]="4">
                 <button ngbNavLink>Messages </button>
                 <ng-template ngbNavContent>
-                    <app-member-message [username]="member.userName"></app-member-message>
+                    <app-member-message [username]="member.userName" [messages]="messagesList"></app-member-message>
                 </ng-template>
             </li>
         </ul>
