@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { MessageService } from '../_services/message.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-messages',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.css'
 })
@@ -14,7 +15,7 @@ export class MessagesComponent {
   pageSize = 5;
 
   ngOnInit():void{
-
+    this.loadMessages();
   }
 
   loadMessages(){

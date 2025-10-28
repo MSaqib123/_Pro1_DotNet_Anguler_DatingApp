@@ -18,6 +18,8 @@ namespace API.Controllers
         IMapper mapper
         ) : BaseApiController
     {
+
+        [HttpPost]
         public async Task<ActionResult<MessageDto>> CreateMessage(CreateMessageDto createMessageDto)
         {
             var username = User.GetUsername();
@@ -38,6 +40,7 @@ namespace API.Controllers
                 RecipientUsername = recipient.UserName,
                 Content = createMessageDto.Content
             };
+            messageRepository.AddMessage(message);
 
             if (await messageRepository.SaveAllAsync()) return Ok(mapper.Map<MessageDto>(message));
 
