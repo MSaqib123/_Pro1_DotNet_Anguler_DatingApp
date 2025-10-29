@@ -21,65 +21,75 @@ import { MessageService } from '../../_services/message.service';
 })
 export class MemberDetailComponent implements OnInit {
   
-  @ViewChild('memberTabs', { static: false }) memberTabs?: NgbNav;
-  private memberService = inject(MembersService);
+  @ViewChild('nav', { static: true }) navTabs?: NgbNav;
   private messageService = inject(MessageService);
+  private memberService = inject(MembersService);
   private route = inject(ActivatedRoute);
   messagesList:Message[] =[];
-  member?: Member;
-  active = 1;  
+  member: Member = {} as Member;
   images: GalleryItem[] = []; 
+  active = 1;
 
   
   ngOnInit(): void {
-    this.loadMember();
+      this.route.data.subscribe({
+        next: data => {            
+            this.member = data['member'];
+            this.member &&  this.member.photos.map(photo => {
+            this.images = this.images || [];
+            this.images.push(new ImageItem({src: photo.url, thumb: photo.url}));
+          });
+        }
+      })
+
     this.route.queryParams.subscribe({
       next: params=>{
-        params['tab'] && this.selectTab(params['tab'])
+        console.log(params['tab']);
+        if(params['tab'] === "Message"){
+           this.selectTab(4)
+        }
       }
     })
   }
 
-  selectTab(tabId: number) {
-    console.log(this.memberTabs);
-    this.memberTabs?.select(tabId)
-  }
-
-
-  
-  loadMember(){
-    const username = this.route.snapshot.paramMap.get('username');
-    if(!username) return;
-    this.memberService.getMember(username).subscribe({
-      next: member => {
-        this.member = member;
-        member.photos.forEach(photo => {
-          this.images = this.images || [];
-          this.images.push(new ImageItem({src: photo.url, thumb: photo.url}));
-        });
-      }
-    });
-  }
-
-
   messagesLoaded = false;
   onTabChange($event: NgbNavChangeEvent) {
     if ($event.nextId === 4 && !this.messagesLoaded) {
-      
-      this.messageService.getMessageThread(this.member!.userName).subscribe({
+      this.selectTab($event.nextId)
+    }
+  }
+
+  selectTab(tabId: number) {
+    if (!this.navTabs) return;
+    this.navTabs.select(tabId);
+    this.handleTabChangeLogic(tabId);
+  }
+
+  private handleTabChangeLogic(tabId: number) {
+    if (tabId === 4 && !this.messagesLoaded && this.member) {
+      this.messageService.getMessageThread(this.member.userName).subscribe({
         next: messages => {
-          console.log(messages)
-          this.messagesList = messages
-          console.log(this.messagesList)
+          this.messagesList = messages;
+          console.log('Messages loaded:', this.messagesList);
         }
-      })
+      });
       this.messagesLoaded = true;
     }
   }
 
 
-
-  
-
+  // loadMember(){
+  //   const username = this.route.snapshot.paramMap.get('username');
+  //   if(!username) return;
+  //   this.memberService.getMember(username).subscribe({
+  //     next: member => {
+  //       this.member = member;
+  //       member.photos.map(photo => {
+  //         this.images = this.images || [];
+  //         this.images.push(new ImageItem({src: photo.url, thumb: photo.url}));
+  //       });
+  //     }
+  //   });
+  // }
 
 }
