@@ -76,6 +76,10 @@ export class MemberDetailComponent implements OnInit {
       this.messagesLoaded = true;
     }
   }
+  
+  onUpdateMessages(event:Message){
+    this.messagesList.push(event);
+  }
 
 
   // loadMember(){

@@ -72,7 +72,11 @@
             <li [ngbNavItem]="4">
                 <button ngbNavLink>Messages </button>
                 <ng-template ngbNavContent>
-                    <app-member-message [username]="member.userName" [messages]="messagesList"></app-member-message>
+                    <app-member-message 
+                        [username]="member.userName" 
+                        [messages]="messagesList"
+                        (updateMessages)="onUpdateMessages($event)"
+                        ></app-member-message>
                 </ng-template>
             </li>
         </ul>

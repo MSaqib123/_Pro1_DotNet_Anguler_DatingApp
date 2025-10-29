@@ -69,7 +69,7 @@ namespace API.Data
             {
                 unreadMessage.ForEach(x => x.DateRead = DateTime.UtcNow);
                 // entity is very genius no need  to defined any update
-                //it will automaticly understand that this record is being updated
+                //it will automaticly understand that this record is being updated 
                 await context.SaveChangesAsync();
             }
 

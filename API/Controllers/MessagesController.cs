@@ -36,7 +36,7 @@ namespace API.Controllers
             {
                 Sender = sender,
                 Recipient = recipient,
-                SenderUsername = recipient.UserName,
+                SenderUsername = sender.UserName,
                 RecipientUsername = recipient.UserName,
                 Content = createMessageDto.Content
             };

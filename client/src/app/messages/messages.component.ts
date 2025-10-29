@@ -27,8 +27,13 @@ export class MessagesComponent {
   }
 
   getRoute(message:Message){
-    if(this.container === "Outbox") return `/members/${message.recipientUsername}`;
-    else return `/members/${message.senderUsername}`;
+    console.log(message)
+    if(this.container === "Outbox") {
+      return `/members/${message.recipientUsername}`;
+    }
+    else {
+      return `/members/${message.senderUsername}`;
+    }
   }
 
   pageChanged(page:number){
