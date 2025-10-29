@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 public class DataContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<AppUsers> Users{ get; set; }
+    public DbSet<AppUser> Users{ get; set; }
     public DbSet<UserLike> Likes { get; set; }
     public DbSet<Message> Messages { get; set; }
 

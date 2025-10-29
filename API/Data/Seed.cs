@@ -16,14 +16,12 @@ public class Seed
         {
             PropertyNameCaseInsensitive = true
         };
-        var users = System.Text.Json.JsonSerializer.Deserialize<List<AppUsers>>(userData, options);
+        var users = System.Text.Json.JsonSerializer.Deserialize<List<AppUser>>(userData, options);
         
         foreach (var user in users)
         {
             using var hmac = new HMACSHA512();
             user.UserName = user.UserName.ToLower();
-            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Saqib12345."));
-            user.PasswordSalt = hmac.Key;
             context.Users.Add(user);
         }
 

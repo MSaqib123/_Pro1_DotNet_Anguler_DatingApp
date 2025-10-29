@@ -12,19 +12,19 @@ namespace API.Data;
 public class UserRepository(DataContext _context,IMapper mapper) : IUserRepository
 {
     
-    public async Task<AppUsers?> GetUserByIdAsync(int id)
+    public async Task<AppUser?> GetUserByIdAsync(int id)
     {
         return await _context.Users.FindAsync(id);
     }
 
-    public async Task<AppUsers?> GetUserByUsernameAsync(string username)
+    public async Task<AppUser?> GetUserByUsernameAsync(string username)
     {
         return await _context.Users
             .Include(x=>x.Photos)
             .SingleOrDefaultAsync(x => x.UserName == username);
     }   
 
-    public async Task<IEnumerable<AppUsers>> GetUsersAsync()
+    public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await _context.Users
             .Include(x=>x.Photos)
@@ -32,7 +32,7 @@ public class UserRepository(DataContext _context,IMapper mapper) : IUserReposito
     }
 
 
-    public void Update(AppUsers user)
+    public void Update(AppUser user)
     {
         _context.Entry(user).State = EntityState.Modified;
     }

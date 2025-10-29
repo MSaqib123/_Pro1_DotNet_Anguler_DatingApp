@@ -14,14 +14,14 @@ namespace API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUsers, MemberDto>()
+            CreateMap<AppUser, MemberDto>()
                 .ForMember(d => d.PhotoUrl, o => o.MapFrom(s => s.Photos.FirstOrDefault(p => p.IsMain)!.Url));
             CreateMap<Photo, PhotoDto>();
 
-            CreateMap<MemberUpdateDto, AppUsers>();
+            CreateMap<MemberUpdateDto, AppUser>();
 
             //Registration Mapper
-            CreateMap<RegisterDto, AppUsers>();
+            CreateMap<RegisterDto, AppUser>();
             CreateMap<string, DateOnly>().ConvertUsing(s => DateOnly.Parse(s));
 
             CreateMap<Message, MessageDto>()

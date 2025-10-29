@@ -11,6 +11,6 @@ public class Photo
     // Navigation Properites
     #region  Navigation Properites
     public int AppUserId { get; set; }
-    public AppUsers AppUser { get; set; } = null!;
+    public AppUser AppUser { get; set; } = null!;
     #endregion
 }

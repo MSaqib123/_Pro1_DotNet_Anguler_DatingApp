@@ -19,7 +19,7 @@ namespace Services
             _config = config;
         }
 
-        public string CreateToken(AppUsers user)
+        public string CreateToken(AppUser user)
         {
             var tokenKey = _config["TokenKey"] ?? throw new Exception("Cannot access tokenKey from appsetting ");
             if (tokenKey.Length < 64)

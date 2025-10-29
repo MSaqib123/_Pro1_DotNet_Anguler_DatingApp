@@ -20,8 +20,8 @@ namespace API.Entities
 
         // navigation properties
         public int SenderId { get; set; }
-        public AppUsers Sender { get; set; } = null!;
+        public AppUser Sender { get; set; } = null!;
         public int RecipientId{ get; set; }
-        public AppUsers Recipient { get; set; } = null!;
+        public AppUser Recipient { get; set; } = null!;
     }
 }

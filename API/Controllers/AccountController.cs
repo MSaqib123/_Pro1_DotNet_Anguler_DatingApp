@@ -24,11 +24,8 @@ public class AccountController(
     {
         if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
         using var hmac = new HMACSHA512();
-        var user = mapper.Map<AppUsers>(registerDto);
+        var user = mapper.Map<AppUser>(registerDto);
         user.UserName = registerDto.Username.ToLower();
-        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-        user.PasswordSalt = hmac.Key;
-
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
 
@@ -49,12 +46,6 @@ public class AccountController(
              .FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
         if (user == null) return Unauthorized("Invalid Credential");
 
-        using var hmac = new HMACSHA512(user.PasswordSalt);
-        var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-        for (int i = 0; i < computeHash.Length; i++)
-        {
-            if (computeHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Credential");
-        }
         return new UserDto
         {
             KnownAs = user.KnownAs,
