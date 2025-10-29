@@ -44,4 +44,20 @@ export class MessagesComponent {
     }
   }
 
+
+  deleteMessage(id:number){
+    this.messageService.deleteMessage(id).subscribe({
+      next: _ => {
+        this.messageService.paginatedResult.update(prev => {
+          if(prev && prev.items){
+              //splice is ued to delete  item and index point   (indexposiiton , 1(number of record to delete))
+            prev.items.splice(prev.items.findIndex(m=>m.id === id),1);
+            return prev;
+          }
+          return prev;
+        })
+      }
+    })
+  }
+
 }
