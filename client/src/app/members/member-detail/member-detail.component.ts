@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { MembersService } from '../../_services/members.service';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from '../../_models/member';
@@ -20,7 +20,8 @@ import { MessageService } from '../../_services/message.service';
   styleUrl: './member-detail.component.css'
 })
 export class MemberDetailComponent implements OnInit {
-  @ViewChild('nav', { static: true }) memberTabs!: NgbNav;
+  
+  @ViewChild('memberTabs', { static: false }) memberTabs?: NgbNav;
   private memberService = inject(MembersService);
   private messageService = inject(MessageService);
   private route = inject(ActivatedRoute);
@@ -32,8 +33,20 @@ export class MemberDetailComponent implements OnInit {
   
   ngOnInit(): void {
     this.loadMember();
+    this.route.queryParams.subscribe({
+      next: params=>{
+        params['tab'] && this.selectTab(params['tab'])
+      }
+    })
   }
 
+  selectTab(tabId: number) {
+    console.log(this.memberTabs);
+    this.memberTabs?.select(tabId)
+  }
+
+
+  
   loadMember(){
     const username = this.route.snapshot.paramMap.get('username');
     if(!username) return;
@@ -55,7 +68,6 @@ export class MemberDetailComponent implements OnInit {
       
       this.messageService.getMessageThread(this.member!.userName).subscribe({
         next: messages => {
-          alert();
           console.log(messages)
           this.messagesList = messages
           console.log(this.messagesList)
@@ -64,5 +76,10 @@ export class MemberDetailComponent implements OnInit {
       this.messagesLoaded = true;
     }
   }
+
+
+
+  
+
 
 }

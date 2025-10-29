@@ -21,7 +21,6 @@ export class MemberMessageComponent implements OnInit,OnChanges {
     console.log(this.messages);
   }
 
-  
 
   // loadMessage(){
   //   this.messageService.getMessageThread(this.username()).subscribe({
