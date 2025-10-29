@@ -17,6 +17,7 @@ export class MessagesComponent {
   container = 'Inbox'//'Unread';
   pageNumber = 1;
   pageSize = 5;
+  isOutBox = this.container === 'Outbox';
 
   ngOnInit():void{
     this.loadMessages();

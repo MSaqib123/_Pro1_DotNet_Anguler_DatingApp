@@ -16,8 +16,8 @@
     </div>
 </div>
 
-@if (!messageService.paginatedResult()?.items) {
-    <h3>No Messages</h3>
+@if (!messageService.paginatedResult()?.items || messageService.paginatedResult()?.items?.length ===0 ) {
+    <h3 class="mt-3">No Messages</h3>
 } @else {
     <table class="table table-hover mt-3" style="cursor: pointer;">
         <thead>
@@ -35,13 +35,13 @@
                     <td>
                         <div>
                             <img
-                                [src]="container === 'Outbox'
+                                [src]="isOutBox
                                     ? (message.recipientPhotoUrl || './asssets/user.png')
                                     : (message.senderPhotoUrl || './asssets/user.png')"
                                 alt="image of user"
                                 class="rounded-circle"
                             />
-                            <strong> {{container === 'Outbox' ? message.recipientUsername : message.senderUsername}}</strong>
+                            <strong> {{isOutBox ? message.recipientUsername : message.senderUsername}}</strong>
 
                         </div>
                     </td>
@@ -62,13 +62,14 @@
 <!-- collectionSize      total number of items (total items in table)-->
 <!-- pageSize            items per page (# of pagination pages)-->
 <!-- page                The current page.-->
-<div class="d-flex justify-content-center">
-    <ngb-pagination class=" justify-content-center align-item-center justify-item-center" [boundaryLinks]="true"
-        [collectionSize]="messageService.paginatedResult()?.pagination!.totalItems"
-        [pageSize]="messageService.paginatedResult()?.pagination!.itemsPerPage" 
-        [page]="messageService.paginatedResult()?.pagination!.currentPage"
-        (pageChange)='pageChanged($event)' 
-        [maxSize]="messageService.paginatedResult()?.pagination!.totalItems"
-        [rotate]="true" [ellipses]="true" />
-</div>
-
+ @if (messageService.paginatedResult()?.pagination && messageService.paginatedResult()?.pagination?.totalItems! > 0) {
+    <div class="d-flex justify-content-center">
+        <ngb-pagination class=" justify-content-center align-item-center justify-item-center" [boundaryLinks]="true"
+            [collectionSize]="messageService.paginatedResult()?.pagination!.totalItems"
+            [pageSize]="messageService.paginatedResult()?.pagination!.itemsPerPage" 
+            [page]="messageService.paginatedResult()?.pagination!.currentPage"
+            (pageChange)='pageChanged($event)' 
+            [maxSize]="messageService.paginatedResult()?.pagination!.totalItems"
+            [rotate]="true" [ellipses]="true" />
+    </div>
+}
