@@ -10,8 +10,17 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RolesModalComponent {
   activeModal = inject(NgbActiveModal);
-  
+  username = '';
   @Input() title!: string;
-  @Input() selectedList!: string[];
-  @Input() featureList!: string[];
+  @Input() selectedRoles: string[] = [];
+  @Input() availableRoles: string[] = [];
+
+  updateChecked(checkedValue:string){
+    if(this.selectedRoles.includes(checkedValue)){
+      this.selectedRoles = this.selectedRoles.filter(r=>r !== checkedValue)
+    }
+    else{
+      this.selectedRoles.push(checkedValue);
+    }
+  }
 }

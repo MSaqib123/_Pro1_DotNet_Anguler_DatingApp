@@ -30,8 +30,8 @@ export class UserManagementComponent implements OnInit{
     // Step 2: NOW set data via componentInstance
     const modalComponent = this.bsModalRef.componentInstance as RolesModalComponent;
     modalComponent.title = 'User roles';
-    modalComponent.selectedList = ['Admin', 'Member'];
-    modalComponent.featureList = ['Admin', 'Moderator', 'Member'];
+    modalComponent.selectedRoles = ['Admin', 'Member'];
+    modalComponent.availableRoles = ['Admin', 'Moderator', 'Member'];
   }
 
   
