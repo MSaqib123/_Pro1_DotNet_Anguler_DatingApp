@@ -1,1 +1,25 @@
-<p>admin-penal works!</p>
+<h2>Admin panel</h2>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs member-tabset">
+            <li [ngbNavItem]="1" *appHasRole="['Admin']">
+                <button ngbNavLink>User Management</button>
+                <ng-template ngbNavContent>
+                    <app-user-management></app-user-management>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2" *appHasRole="['Admin','Moderator']" class="nav-tabs member-tabset">
+                <button ngbNavLink>Photo Management</button>
+                <ng-template ngbNavContent>
+                    <app-photo-management></app-photo-management>
+                </ng-template>
+            </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</div>
+<!-- } -->
