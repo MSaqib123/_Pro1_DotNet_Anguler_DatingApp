@@ -1,5 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from '../../_models/user';
 
 
 @Component({
@@ -11,9 +12,11 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class RolesModalComponent {
   activeModal = inject(NgbActiveModal);
   username = '';
+  @Input() users:User[] = [];
   @Input() title!: string;
   @Input() selectedRoles: string[] = [];
   @Input() availableRoles: string[] = [];
+  @Input() rolesUpdated: boolean=false;
 
   updateChecked(checkedValue:string){
     if(this.selectedRoles.includes(checkedValue)){
@@ -22,5 +25,10 @@ export class RolesModalComponent {
     else{
       this.selectedRoles.push(checkedValue);
     }
+  }
+
+  onSelectRoles(){
+    this.rolesUpdated = true;
+    this.activeModal.close();
   }
 }

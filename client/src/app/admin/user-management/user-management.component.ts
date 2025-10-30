@@ -16,7 +16,7 @@ export class UserManagementComponent implements OnInit{
 
   private modalService = inject(NgbModal);
   private bsModalRef?: NgbModalRef;
-  openRoleModal() {
+  openRoleModal(user:User) {
     // Step 1: Open modal with correct options (NO initialState!)
     this.bsModalRef = this.modalService.open(
       RolesModalComponent
@@ -30,8 +30,23 @@ export class UserManagementComponent implements OnInit{
     // Step 2: NOW set data via componentInstance
     const modalComponent = this.bsModalRef.componentInstance as RolesModalComponent;
     modalComponent.title = 'User roles';
-    modalComponent.selectedRoles = ['Admin', 'Member'];
+    modalComponent.username = user.username;
+    modalComponent.selectedRoles = [...user.roles!];
     modalComponent.availableRoles = ['Admin', 'Moderator', 'Member'];
+    modalComponent.users  = this.users;
+    modalComponent.rolesUpdated  = false;
+
+    this.bsModalRef.hidden?.subscribe({
+      next:()=>{
+        if(modalComponent.rolesUpdated ){
+          const selectedRoles = modalComponent.selectedRoles;
+          this.adminService.updateUserRole(user.username,selectedRoles).subscribe({
+            next:roles => user.roles! = roles
+          })
+        }
+      }
+    })
+    
   }
 
   

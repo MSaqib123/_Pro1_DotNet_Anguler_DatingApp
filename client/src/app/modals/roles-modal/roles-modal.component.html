@@ -10,16 +10,27 @@
 				<input
 					type="checkbox"
 					class="form-check-input"
+					[id]="'role-' + role"
 					[checked] = "selectedRoles.includes(role)"
 					value = "role"
 					(change)="updateChecked(role)"
-					[disabled]="role==='Admin' && username==='Admin'"
+					[disabled]="role==='Admin' && username==='admin'"
 					/>
-					{{role}}
+					<label
+						class="form-check-label"
+						[for]="'role-' + role"
+					>
+						{{ role }}
+					</label>
 			</div>
 		}
 	</ul>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-outline-secondary" (click)="activeModal.close('Close click')">Close</button>
+	<button 
+		[disabled]="selectedRoles.length===0"
+		type="button" 
+		class="btn btn-success" 
+		(click)="onSelectRoles()">Submit</button>
+	<!-- <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close('Close click')">Close</button> -->
 </div>
