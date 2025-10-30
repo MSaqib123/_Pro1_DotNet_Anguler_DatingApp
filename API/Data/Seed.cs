@@ -21,8 +21,9 @@ public class Seed
         };
         var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options)!;
         
-        foreach (var user in users) 
+        foreach (var user in users)
         {
+            user.UserName = user.UserName!.ToLower();
             await userManager.CreateAsync(user, "Saqib12345.");
         }
     }
