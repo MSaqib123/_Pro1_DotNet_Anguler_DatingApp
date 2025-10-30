@@ -20,7 +20,7 @@ public class UsersController(
 {
 
     // [AllowAnonymous]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
     {
@@ -32,7 +32,7 @@ public class UsersController(
     }
 
 
-    [Authorize(Roles = "Member")]
+    // [Authorize(Roles = "Member")]
     [HttpGet("{username}")]
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
