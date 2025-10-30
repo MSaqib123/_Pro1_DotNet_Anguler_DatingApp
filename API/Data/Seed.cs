@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using API.Entities;
 
 namespace API.Data;
@@ -11,20 +12,19 @@ public class Seed
     {
         if (context.Users.Any()) return;
 
-        var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
-        var options = new System.Text.Json.JsonSerializerOptions
+        var userData = File.ReadAllText("Data/UserSeedData.json");
+        var options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         };
-        var users = System.Text.Json.JsonSerializer.Deserialize<List<AppUser>>(userData, options);
+        var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options)!;
         
-        foreach (var user in users)
+        foreach (var user in users) 
         {
             using var hmac = new HMACSHA512();
-            user.UserName = user.UserName.ToLower();
             context.Users.Add(user);
         }
 
-        context.SaveChanges();
+        await context.SaveChangesAsync();
     }
 }

@@ -594,3 +594,8 @@ D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\obj\Deb
 D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\obj\Debug\net8.0\API.pdb
 D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\obj\Debug\net8.0\API.genruntimeconfig.cache
 D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\obj\Debug\net8.0\ref\API.dll
+D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll

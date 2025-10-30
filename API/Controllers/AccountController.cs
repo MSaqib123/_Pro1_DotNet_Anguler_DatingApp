@@ -44,7 +44,8 @@ public class AccountController(
         var user = await _context.Users
              .Include(x => x.Photos)
              .FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
-        if (user == null) return Unauthorized("Invalid Credential");
+
+        if (user == null || user.UserName==null) return Unauthorized("Invalid Credential");
 
         return new UserDto
         {
@@ -59,6 +60,6 @@ public class AccountController(
 
     private async Task<bool> UserExists(string Username)
     {
-        return await _context.Users.AnyAsync(x => x.UserName.ToLower() == Username.ToLower());
+        return await _context.Users.AnyAsync(x => x.NormalizedUserName == Username.ToUpper());
     }
 }

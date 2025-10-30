@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\API\\API.csproj": {}
+    "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj": {}
   },
   "projects": {
-    "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\API\\API.csproj": {
+    "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\API\\API.csproj",
+        "projectUniqueName": "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\API\\API.csproj",
+        "projectPath": "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\api\\API.csproj",
         "packagesPath": "C:\\Users\\m4357\\.nuget\\packages\\",
-        "outputPath": "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\API\\obj\\",
+        "outputPath": "D:\\Working\\Angular_DotNet_Project\\V 2\\_Pro1_DotNet_Anguler_DatingApp\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -66,7 +66,7 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.19, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
