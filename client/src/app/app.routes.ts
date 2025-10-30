@@ -12,6 +12,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { memberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { AdminPenalComponent } from './admin/admin-penal/admin-penal.component';
+import { adminGuard } from './_guards/admin.guard';
 
 export const routes: Routes = [
 
@@ -34,7 +35,7 @@ export const routes: Routes = [
             {path: 'member/edit', component: MemberEditComponent,canDeactivate:[preventUnsavedChangesGuard]},
             {path: 'lists', component: ListsComponent},
             {path: 'messages', component: MessagesComponent},
-            {path: 'admin', component: AdminPenalComponent},
+            {path: 'admin', component: AdminPenalComponent, canActivate:[adminGuard]},
         ]
 
     },

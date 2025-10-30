@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { User } from '../_models/user';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -18,6 +18,15 @@ export class AccountService {
   // GOOD
   // we need to create _models
   currentUser = signal<User | null>(null);
+  roles = computed(() => {
+    const user = this.currentUser();
+    if(user && user.token){
+      //atob  decode the token
+      const role =  JSON.parse(atob(user.token.split('.')[1])).role
+      return Array.isArray(role)? role : [role];
+    }
+    return [];
+  })
 
   login(model:any)
   {
