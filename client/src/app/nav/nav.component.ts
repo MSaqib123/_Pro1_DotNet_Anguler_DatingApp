@@ -5,10 +5,11 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterLink,RouterLinkActive  } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 import { NotyfService } from '../shared/notyif.service';
+import { HasRoleDirective } from '../_directives/has-role.directive';
 
 @Component({
   selector: 'app-nav',
-  imports: [FormsModule, CommonModule, NgbDropdownModule, RouterLink, RouterLinkActive],
+  imports: [FormsModule, CommonModule, NgbDropdownModule, RouterLink, RouterLinkActive, HasRoleDirective],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
@@ -17,7 +18,6 @@ export class NavComponent {
   private router = inject(Router);
   private notyf = inject(NotyfService);
 
-  
   model:any = {};
   login(){
     this.accountService.login(this.model).subscribe({

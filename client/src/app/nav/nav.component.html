@@ -10,18 +10,18 @@
                 <!-- @if(true) -->
                 @if(accountService.currentUser())
                 {
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/lists" routerLinkActive="active">list</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/lists" routerLinkActive="active">list</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+                    </li>
+                    <li *appHasRole="['Admin','Moderator']" class="nav-item">
+                        <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+                    </li>
                 }
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
