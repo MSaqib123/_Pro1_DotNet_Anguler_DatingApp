@@ -12,8 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
 
 [Authorize]
-[ApiController]
-[Route("api/[controller]")]
 public class UsersController(
         IUserRepository userRepository,
         IMapper mapper,
@@ -21,9 +19,10 @@ public class UsersController(
      ) : BaseApiController
 {
 
+    // [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     [HttpGet]
-    [AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers( [FromQuery]UserParams userParams)
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
     {
         userParams.CurrentUsername = User.GetUsername();
         var users = await userRepository.GetMembersAsync(userParams);
@@ -33,7 +32,7 @@ public class UsersController(
     }
 
 
-    [Authorize]
+    [Authorize(Roles = "Member")]
     [HttpGet("{username}")]
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
@@ -51,7 +50,7 @@ public class UsersController(
 
         var user = await userRepository.GetUserByUsernameAsync(User.GetUsername());
         if (user == null) return NotFound();
-        
+
         mapper.Map(memberUpdateDto, user);
 
         if (await userRepository.SaveAllAsync()) return NoContent();
@@ -110,12 +109,12 @@ public class UsersController(
 
         return BadRequest("Problem setting main photo");
     }
-    
+
     [HttpDelete("delete-photo/{photoId:int}")]
     public async Task<ActionResult> DeletePhoto(int photoId)
     {
         var user = await userRepository.GetUserByUsernameAsync(User.GetUsername());
-        if(user==null) return BadRequest("User not found");
+        if (user == null) return BadRequest("User not found");
         var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
         if (photo == null || photo.IsMain) return BadRequest("this photo can not be deleted");
 
