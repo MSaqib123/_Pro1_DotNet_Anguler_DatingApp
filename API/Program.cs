@@ -68,8 +68,13 @@ app.UseMiddleware<ExceptionMiddleware>();
 // Use HTTPS redirection
 app.UseHttpsRedirection();
 
-// Use CORS policy
-app.UseCors("AllowAngularApp");
+//===== CORS policy (Cross Origin Resources Sharing) ======
+//Allow to All
+// app.UseCors("AllowAngularApp");
+
+//Allow to only specific Url
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
+    .WithOrigins("http://localhost:4200", "https://localhost:4200"));
 
 app.UseAuthentication();
 app.UseAuthorization();
