@@ -48,11 +48,13 @@ namespace API.Extensions
             services.AddScoped<ILikesRepository,LikesRepository>();
             services.AddScoped<IMessageRepository,MessageRepository>();
             services.AddScoped<LogUserActivity>();
-
             // ✅ CORRECT - Scans ALL assemblies for Profile classes
             //intall  AutoMapper.Extensions.Microsoft.DependencyInjection
             services.AddAutoMapper(typeof(AutoMapperProfiles));
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+
+            // WebSocket SignalR
+            services.AddSignalR();
 
             return services;
         }
