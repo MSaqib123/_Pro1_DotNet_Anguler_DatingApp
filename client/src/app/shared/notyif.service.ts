@@ -19,51 +19,72 @@ export class NotyfService {
           icon: {
             className: 'notyf__icon--success',
             tagName: 'i',
-            text: '',
           },
         },
         {
           type: 'error',
           background: '#dc3545',
           icon: {
-            className: 'notyf__icon--error',
+            className: 'fas fa-times-circle',
             tagName: 'i',
-            text: '',
           },
         },
         {
           type: 'info',
           background: '#17a2b8',
           icon: {
-            className: 'notyf__icon--info',
+            className: 'fas fa-info-circle',
             tagName: 'i',
-            text: '',
+          },
+        },
+        {
+          type: 'warning',
+          background: '#ffc107',
+          icon: {
+            className: 'fas fa-exclamation-triangle',
+            tagName: 'i',
+            color: '#212529',
           },
         },
       ],
     });
   }
+
+  /** -----------------------------------------------------------------
+   *  Private helper – uses shortcut for built-in types, .open() for custom
+   *  ----------------------------------------------------------------- */
   private showNotification(
-    type: 'success' | 'error' | 'info',
+    type: 'success' | 'error' | 'info' | 'warning',
     title: string,
     message?: string
   ) {
-    const config = {
-      message:
-        message === undefined
-          ? title
-          : `<strong>${title}</strong>${message ? '<br>' + message : ''}`,
+    const html = message === undefined
+      ? title
+      : `<strong>${title}</strong>${message ? '<br>' + message : ''}`;
+
+    const baseConfig = {
+      message: html,
       duration: 4000,
       dismissible: true,
     };
 
-    if (type === 'info') {
-      this.notyf.open({ ...config, type: 'info' });
-    } else {
-      this.notyf[type](config);
+    // Built-in shortcuts (success / error) – they automatically pick the icon
+    if (type === 'success') {
+      this.notyf.success({ ...baseConfig });
+      return;
     }
+    if (type === 'error') {
+      this.notyf.error({ ...baseConfig });
+      return;
+    }
+
+    // Custom types → use .open()
+    this.notyf.open({ ...baseConfig, type });
   }
 
+  // -----------------------------------------------------------------
+  // Public API
+  // -----------------------------------------------------------------
   success(title: string, message?: string) {
     this.showNotification('success', title, message);
   }
@@ -74,6 +95,10 @@ export class NotyfService {
 
   info(title: string, message?: string) {
     this.showNotification('info', title, message);
+  }
+
+  warning(title: string, message?: string) {
+    this.showNotification('warning', title, message);
   }
 
   // success(title: string, message?: string) {
