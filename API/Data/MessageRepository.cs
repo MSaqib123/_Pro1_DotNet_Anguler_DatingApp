@@ -14,6 +14,7 @@ namespace API.Data
 {
     public class MessageRepository(DataContext context,IMapper mapper) : IMessageRepository
     {
+
         public void AddMessage(Message message)
         {
             context.Messages.Add(message);
@@ -23,6 +24,8 @@ namespace API.Data
         {
             context.Messages.Remove(message);
         }
+
+
 
         public async Task<Message?> GetMessage(int id)
         {
@@ -93,5 +96,30 @@ namespace API.Data
         {
             return await context.SaveChangesAsync() > 0;
         }
+
+
+
+
+        public void AddGroup(Group group)
+        {
+            context.Groups.Add(group);
+        }
+        public async Task<Connection?> GetConnection(string connectionId)
+        {
+            return await context.Connections.FindAsync(connectionId);
+        }
+
+        public async Task<Group?> GetMessageGroup(string groupName)
+        {
+            return await context.Groups
+                .Include(x => x.Connections)
+                .FirstOrDefaultAsync(x => x.Name == groupName);
+        }
+
+        public void RemoveConnection(Connection connection)
+        {
+            context.Connections.Remove(connection);
+        }
+
     }
 }
