@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import {HubConnection, HubConnectionBuilder, HubConnectionState} from '@microsoft/signalr';
 import { NotyfService } from '../shared/notyif.service';
@@ -11,6 +11,7 @@ export class PresenceService {
   hubUrl = environment.hubsUrl;
   private hubConnection? : HubConnection;
   private notyIf = inject(NotyfService);
+  onlineUsers = signal<string[]>([]);
 
   createHubConnection(user:User){
     this.hubConnection = new HubConnectionBuilder()
@@ -28,6 +29,11 @@ export class PresenceService {
 
     this.hubConnection.on("UserIsOffline",username=>{
       this.notyIf.error(username + ' has disconnected');
+    })
+
+
+    this.hubConnection.on('GetOnlineUsers',usernames=>{
+      this.onlineUsers.set(usernames);
     })
   }
 

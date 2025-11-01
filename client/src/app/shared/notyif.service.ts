@@ -17,7 +17,7 @@ export class NotyfService {
           type: 'success',
           background: '#28a745',
           icon: {
-            className: 'notyf__icon--success',
+            className: 'fa fa-check-circle',   // FA 4.7 success
             tagName: 'i',
           },
         },
@@ -25,7 +25,7 @@ export class NotyfService {
           type: 'error',
           background: '#dc3545',
           icon: {
-            className: 'fas fa-times-circle',
+            className: 'fa fa-times-circle',   // FA 4.7 error (you already had this)
             tagName: 'i',
           },
         },
@@ -33,7 +33,7 @@ export class NotyfService {
           type: 'info',
           background: '#17a2b8',
           icon: {
-            className: 'fas fa-info-circle',
+            className: 'fa fa-info-circle',    // FA 4.7 info
             tagName: 'i',
           },
         },
@@ -41,7 +41,7 @@ export class NotyfService {
           type: 'warning',
           background: '#ffc107',
           icon: {
-            className: 'fas fa-exclamation-triangle',
+            className: 'fa fa-trash', // FA 4.7 warning
             tagName: 'i',
             color: '#212529',
           },

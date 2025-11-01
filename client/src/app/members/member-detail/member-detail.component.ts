@@ -1,5 +1,4 @@
 import { AfterViewChecked, AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
-import { MembersService } from '../../_services/members.service';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from '../../_models/member';
 import { RouterLink } from '@angular/router';
@@ -11,6 +10,7 @@ import { TimeagoModule } from 'ngx-timeago';
 import { MemberMessageComponent  } from '../member-message/member-message.component';
 import { Message } from '../../_models/message';
 import { MessageService } from '../../_services/message.service';
+import { PresenceService } from '../../_services/presence.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class MemberDetailComponent implements OnInit {
   
   @ViewChild('nav', { static: true }) navTabs?: NgbNav;
   private messageService = inject(MessageService);
-  private memberService = inject(MembersService);
+  presenceService = inject(PresenceService);
   private route = inject(ActivatedRoute);
   messagesList:Message[] =[];
   member: Member = {} as Member;

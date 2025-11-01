@@ -6,6 +6,12 @@
         <div class="card mb-4 ">
             <img [src]= "member.photoUrl || './assets/user.png'" class="card-img-top img-thumbnail" alt="{{ member.knownAs }}">
             <div class="card-body">
+                @if(presenceService.onlineUsers().includes(member.userName))
+                {
+                    <div class="mb-2">
+                        <i class="fa fa-user-circle text-success"></i> Online now
+                    </div>
+                }
                 <!-- <h6 class="card-title mb-1">
                         <i class="fa fa-user me-2"></i>
                         {{ member.knownAs }}, {{ member.age }} 
