@@ -1,5 +1,5 @@
 import { AfterViewChecked, AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Member } from '../../_models/member';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -12,6 +12,7 @@ import { Message } from '../../_models/message';
 import { MessageService } from '../../_services/message.service';
 import { PresenceService } from '../../_services/presence.service';
 import { AccountService } from '../../_services/account.service';
+import { HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 
 
 @Component({
@@ -21,10 +22,10 @@ import { AccountService } from '../../_services/account.service';
   styleUrl: './member-detail.component.css'
 })
 export class MemberDetailComponent implements OnInit, OnDestroy {
-  
   @ViewChild('nav', { static: true }) navTabs?: NgbNav;
   private messageService = inject(MessageService);
   private accountService = inject(AccountService);
+  private router = inject(Router);
   presenceService = inject(PresenceService);
   private route = inject(ActivatedRoute);
   member: Member = {} as Member;
@@ -44,6 +45,10 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
         }
       })
 
+    this.route.paramMap.subscribe({
+      next: _ => this.onRouteParamsChange()
+    })
+
     this.route.queryParams.subscribe({
       next: params=>{
         console.log(params['tab']);
@@ -54,8 +59,26 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     })
   }
 
+  onRouteParamsChange(){
+    const user = this.accountService.currentUser();
+    if(!user) return;
+    if(this.messageService.hubConnection?.state === HubConnectionState.Connected && this.active === 4)
+    {
+      this.messageService.hubConnection.stop().then(()=>{
+        this.messageService.CreateHubConnection(user,this.member.userName)
+      })
+    }
+  }
+
   messagesLoaded = false;
   onTabChange($event: NgbNavChangeEvent) {
+    const tabs = $event.nextId == 4 ? "Message" : $event.nextId;
+    this.router.navigate([],{
+      relativeTo:this.route,
+      queryParams: {tab: tabs},
+      queryParamsHandling:'merge'
+    })
+
     if ($event.nextId === 4 && !this.messagesLoaded) {
       this.selectTab($event.nextId)
     }
