@@ -22,14 +22,23 @@ export class MemberMessageComponent {
   //[messages]="messagesList"
   //(updateMessages)="onUpdateMessages($event)"
 
+  
+  
+  //==== signalR base ====
   sendMessage(){
-    this.messageService.sendMessage(this.username(), this.messageContent).subscribe({
-      next:message=>{
-        // this.updateMessages.emit(message)
-        this.messageForm?.reset();
-      }
+    this.messageService.sendMessage(this.username(), this.messageContent).then(()=>{
+      this.messageForm?.reset();
     })
   }
+  //===== simple api send messasge
+  // sendMessage(){
+  //   this.messageService.sendMessage(this.username(), this.messageContent).subscribe({
+  //     next:message=>{
+  //       // this.updateMessages.emit(message)
+  //       this.messageForm?.reset();
+  //     }
+  //   })
+  // }
 
 }
 
