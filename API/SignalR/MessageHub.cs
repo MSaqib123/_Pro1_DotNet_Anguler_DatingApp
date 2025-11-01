@@ -12,7 +12,11 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace API.SignalR
 {
-    public class MessageHub(IMessageRepository messageRepository, IUserRepository userRepository, IMapper mapper) : Hub
+    public class MessageHub(
+        IMessageRepository messageRepository,
+        IUserRepository userRepository,
+        IMapper mapper,
+        IHubContext<PresenceHub> presenceHub) : Hub
     {
         public override async Task OnConnectedAsync()
         {
@@ -67,6 +71,19 @@ namespace API.SignalR
             if (group != null && group.Connections.Any(x => x.Username == recipient.UserName))
             {
                 message.DateRead = DateTime.UtcNow;
+            }
+            else
+            {
+                var connection = await PrecenseTracker.GetConnectionsForUser(recipient.UserName);
+                if(connection != null && connection?.Count != null)
+                {
+                    await presenceHub.Clients.Clients(connection).SendAsync("NewMessageReceived",
+                        new
+                        {
+                            username = sender.UserName,
+                            knownAs = sender.KnownAs
+                        });
+                }
             }
 
             messageRepository.AddMessage(message);
