@@ -41,10 +41,8 @@ namespace API.SignalR
         public async Task SendMessage(CreateMessageDto createMessageDto)
         {
             var username = Context.User?.GetUsername() ?? throw new Exception("couldnot get user");
-
             if (username == createMessageDto.RecipientUsername!.ToLower())
                 throw new HubException("You cannot message yourself");
-
 
             var sender = await userRepository.GetUserByUsernameAsync(username);
             var recipient = await userRepository.GetUserByUsernameAsync(createMessageDto.RecipientUsername);

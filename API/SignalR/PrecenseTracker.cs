@@ -20,7 +20,7 @@ namespace API.SignalR
             {
                 if (OnlineUsers.ContainsKey(username))
                 {
-
+                    OnlineUsers[username].Add(connectionId);
                 }
                 else
                 {
@@ -40,7 +40,7 @@ namespace API.SignalR
             {
                 if (!OnlineUsers.ContainsKey(username)) return Task.CompletedTask;
 
-                OnlineUsers[username].Remove(username);
+                OnlineUsers[username].Remove(connectionId);
 
                 if (OnlineUsers[username].Count == 0)
                 {

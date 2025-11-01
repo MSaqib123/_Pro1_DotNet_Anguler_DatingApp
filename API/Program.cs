@@ -73,6 +73,7 @@ app.UseHttpsRedirection();
 // app.UseCors("AllowAngularApp");
 
 //Allow to only specific Url
+//when we work with signalR we need to add  AllowCredentials()  
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
     .WithOrigins("http://localhost:4200", "https://localhost:4200"));
 
@@ -80,7 +81,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.MapHub<PresenceHub>("hubs/presence");
-app.MapHub<PresenceHub>("hubs/message");
+app.MapHub<MessageHub>("hubs/message");
 
 
 using var scope = app.Services.CreateScope();

@@ -19,19 +19,19 @@ export class MessageService {
   paginatedResult = signal<PaginatedResult<Message[]> | null>(null);
   messageThread = signal<Message[]>([]);
 
-  CreateHubConnection(user:User)
+  CreateHubConnection(user:User , otherUsername:string)
   {
-      this.hubConnection = new HubConnectionBuilder()
-        .withUrl(this.hubUrl + "message",{
-          accessTokenFactory: () => user.token
-        })
-        .withAutomaticReconnect()
-        .build();
-      this.hubConnection.start().catch(error => console.log(error))
-
-      this.hubConnection.on('ReceiveMessageThread',messages=>{
-        this.messageThread.set(messages)
+    this.hubConnection = new HubConnectionBuilder()
+      .withUrl(this.hubUrl + "message?user="+otherUsername,{
+        accessTokenFactory: () => user.token
       })
+      .withAutomaticReconnect()
+      .build();
+    this.hubConnection.start().catch(error => console.log(error))
+
+    this.hubConnection.on('ReceiveMessageThread',messages=>{
+      this.messageThread.set(messages)
+    })
   }
 
   stopHubConnection(){

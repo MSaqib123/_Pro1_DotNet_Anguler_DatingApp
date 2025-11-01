@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from '../../_models/member';
 import { RouterLink } from '@angular/router';
@@ -11,6 +11,7 @@ import { MemberMessageComponent  } from '../member-message/member-message.compon
 import { Message } from '../../_models/message';
 import { MessageService } from '../../_services/message.service';
 import { PresenceService } from '../../_services/presence.service';
+import { AccountService } from '../../_services/account.service';
 
 
 @Component({
@@ -19,16 +20,17 @@ import { PresenceService } from '../../_services/presence.service';
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })
-export class MemberDetailComponent implements OnInit {
+export class MemberDetailComponent implements OnInit, OnDestroy {
   
   @ViewChild('nav', { static: true }) navTabs?: NgbNav;
   private messageService = inject(MessageService);
+  private accountService = inject(AccountService);
   presenceService = inject(PresenceService);
   private route = inject(ActivatedRoute);
-  messagesList:Message[] =[];
   member: Member = {} as Member;
   images: GalleryItem[] = []; 
   active = 1;
+  // messagesList:Message[] =[]; 
 
   
   ngOnInit(): void {
@@ -66,20 +68,32 @@ export class MemberDetailComponent implements OnInit {
   }
 
   private handleTabChangeLogic(tabId: number) {
-    if (tabId === 4 && !this.messagesLoaded && this.member) {
-      this.messageService.getMessageThread(this.member.userName).subscribe({
-        next: messages => {
-          this.messagesList = messages;
-          console.log('Messages loaded:', this.messagesList);
-        }
-      });
+    if (tabId === 4 && this.member) {
+      const user = this.accountService.currentUser();
+      if(!user) return;
+      console.log(user,"User")
+      this.messageService.CreateHubConnection(user,this.member.userName);
+      // this.messageService.getMessageThread(this.member.userName).subscribe({
+      //   next: messages => {
+      //     this.messagesList = messages;
+      //     console.log('Messages loaded:', this.messagesList);
+      //   }
+      // });
       this.messagesLoaded = true;
     }
+    else{
+      this.messageService.stopHubConnection();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.messageService.stopHubConnection();
   }
   
-  onUpdateMessages(event:Message){
-    this.messagesList.push(event);
-  }
+  
+  // onUpdateMessages(event:Message){
+  //   this.messagesList.push(event);
+  // }
 
 
   // loadMember(){
