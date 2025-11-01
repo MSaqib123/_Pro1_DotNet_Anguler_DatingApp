@@ -7,6 +7,7 @@ using API.Data;
 using API.Helpers;
 using API.Interfaces;
 using API.Services;
+using API.SignalR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,9 +53,10 @@ namespace API.Extensions
             //intall  AutoMapper.Extensions.Microsoft.DependencyInjection
             services.AddAutoMapper(typeof(AutoMapperProfiles));
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
-
             // WebSocket SignalR
             services.AddSignalR();
+
+            services.AddSingleton<PrecenseTracker>();
 
             return services;
         }
