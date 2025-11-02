@@ -38,6 +38,18 @@ export class MessageService {
       this.messageThread.update(messages => [...messages,message])
     })
 
+    
+    /*
+    💬 Samajh:
+    Jab server se "UpdatedGroup" event aata hai (yaani group update hua, koi connect hua),
+    Angular check karta hai:
+
+    Kya doosra user (jis se baat kar raha hoon) bhi online hai group mein?
+
+    Agar haan ✅
+    toh wo sab messages jinke dateRead null thay, unko dateRead = now set kar deta hai.
+    👉 Matlab: "messages read ho gaye" mark kar deta hai.
+    */
     this.hubConnection.on("UpdatedGroup",(group:Group)=>{
       if(group.connections.some(x=> x.username === otherUsername))
       {
