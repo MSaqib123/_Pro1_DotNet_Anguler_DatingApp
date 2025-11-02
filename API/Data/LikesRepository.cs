@@ -19,7 +19,7 @@ public class LikesRepository(DataContext context, IMapper mapper) : ILikesReposi
     {
         context.Likes.Remove(like);
     }
-    
+
 
     public async Task<IEnumerable<int>> GetCurrentUserLikeIds(int currentUserId)
     {
@@ -63,11 +63,15 @@ public class LikesRepository(DataContext context, IMapper mapper) : ILikesReposi
                 break;
         }
 
-        return await PagedList<MemberDto>.CreateAsync(query,likesParams.PageNumber,likesParams.PageSize);
+        return await PagedList<MemberDto>.CreateAsync(query, likesParams.PageNumber, likesParams.PageSize);
     }
 
-    public async Task<bool> SaveChanges()
-    {
-        return await context.SaveChangesAsync() > 0;
-    }
+
+
+
+    //========= Move to IUnitOfWork ==========
+    // public async Task<bool> SaveChanges()
+    // {
+    //     return await context.SaveChangesAsync() > 0;
+    // }
 }

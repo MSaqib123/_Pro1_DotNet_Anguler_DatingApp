@@ -12,9 +12,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class MessageRepository(DataContext context,IMapper mapper) : IMessageRepository
+    public class MessageRepository(DataContext context, IMapper mapper) : IMessageRepository
     {
-
+        //========= Move to IUnitOfWork ==========
         public void AddMessage(Message message)
         {
             context.Messages.Add(message);
@@ -65,11 +65,11 @@ namespace API.Data
                 // .Include(x => x.Recipient).ThenInclude(x => x.Photos)
                 .Where(
                     x =>
-                    x.RecipientUsername == currentUsername 
-                        && x.RecipientDeleted== false 
+                    x.RecipientUsername == currentUsername
+                        && x.RecipientDeleted == false
                         && x.SenderUsername == recipientUsername ||
-                    x.SenderUsername == currentUsername 
-                        && x.SenderDeleted== false 
+                    x.SenderUsername == currentUsername
+                        && x.SenderDeleted == false
                         && x.RecipientUsername == recipientUsername
                 )
                 .OrderBy(x => x.MessageSent)
@@ -91,14 +91,6 @@ namespace API.Data
             return messages;
             // return mapper.Map<IEnumerable<MessageDto>>(messages);
         }
-
-        public async Task<bool> SaveAllAsync()
-        {
-            return await context.SaveChangesAsync() > 0;
-        }
-
-
-
 
         public void AddGroup(Group group)
         {
@@ -123,8 +115,17 @@ namespace API.Data
 
         public async Task<Group?> GetGroupForConnection(string connectionId)
         {
-            return await context.Groups.Include(x=>x.Connections)
+            return await context.Groups.Include(x => x.Connections)
                 .Where(x => x.Connections.Any(c => c.ConnectionId == connectionId)).FirstOrDefaultAsync();
         }
+
+
+
+        //========= Move to IUnitOfWork ==========
+        // public async Task<bool> SaveAllAsync()
+        // {
+        //     return await context.SaveChangesAsync() > 0;
+        // }
+
     }
 }

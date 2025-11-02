@@ -13,8 +13,10 @@ public interface ILikesRepository
 
     void AddLike(UserLike like);
     void DeleteLike(UserLike like);
-    Task<bool> SaveChanges();   
 
 
-    
+
+    //========= Move to IUnitOfWork ==========
+    // Task<bool> SaveChanges();   
+
 }
