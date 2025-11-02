@@ -15,8 +15,8 @@ export class ConfirmService {
     btnCancelText = 'Cancel'
   ): Promise<boolean> {
     const modalRef: NgbModalRef = this.modalService.open(ConfirmDialogComponent, {
-      centered: true,
-      backdrop: 'static' // optional
+      centered: false,
+      backdrop: 'static',
     });
 
     // Pass data to modal
@@ -25,12 +25,12 @@ export class ConfirmService {
     modalRef.componentInstance.btnOkText = btnOkText;
     modalRef.componentInstance.btnCancelText = btnCancelText;
 
+    
     // Return promise
     return modalRef.result
       .then(
         (result) => result === true, // OK → true
-        (reason) => reason === false // Cancel → false
       )
       .catch(() => false); // Closed by backdrop → false
-  }
+  }  
 }

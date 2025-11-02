@@ -17,10 +17,10 @@ export class ConfirmDialogComponent {
   @Input() btnCancelText = 'Cancel';
 
   confirm() {
-    this.activeModal.close(true); // Return true
-  }
+  this.activeModal.close(true);    // OK → true
+}
 
-  decline() {
-    this.activeModal.dismiss(false); // Return false
-  }
+decline() {
+  this.activeModal.dismiss(false); // Cancel → false
+}
 }
