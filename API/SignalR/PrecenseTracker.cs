@@ -14,8 +14,9 @@ public class PrecenseTracker
     //C# 12
     private static readonly Dictionary<string, List<string> > OnlineUsers = [];
 
-    public Task UserConnected(string username, string connectionId)
+    public Task<bool> UserConnected(string username, string connectionId)
     {
+        var isOnline = false;
         lock (OnlineUsers)
         {
             if (OnlineUsers.ContainsKey(username))
@@ -29,25 +30,29 @@ public class PrecenseTracker
 
                 // C# 12
                 OnlineUsers.Add(username, [connectionId]);
+                isOnline = true;
             }
         }
-        return Task.CompletedTask;
+        return Task.FromResult(isOnline);
+        // return Task.CompletedTask;
     }
 
-    public Task UserDisconnected(string username, string connectionId)
+    public Task<bool> UserDisconnected(string username, string connectionId)
     {
+        var isOffline = false;
         lock (OnlineUsers)
         {
-            if (!OnlineUsers.ContainsKey(username)) return Task.CompletedTask;
+            if (!OnlineUsers.ContainsKey(username)) return Task.FromResult(isOffline);
 
             OnlineUsers[username].Remove(connectionId);
 
             if (OnlineUsers[username].Count == 0)
             {
                 OnlineUsers.Remove(username);
+                isOffline = true;
             }
         }
-        return Task.CompletedTask;
+        return Task.FromResult(isOffline);
     }
 
 
