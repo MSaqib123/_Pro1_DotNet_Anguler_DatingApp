@@ -7,10 +7,11 @@ import { AccountService } from '../_services/account.service';
 import { NotyfService } from '../shared/notyif.service';
 import { HasRoleDirective } from '../_directives/has-role.directive';
 import { environment } from '../../environments/environment';
+import { AssetsUrlPipe } from '../_pipes/assets-url.pipe';
 
 @Component({
   selector: 'app-nav',
-  imports: [FormsModule, CommonModule, NgbDropdownModule, RouterLink, RouterLinkActive, HasRoleDirective],
+  imports: [FormsModule, CommonModule, NgbDropdownModule, RouterLink, RouterLinkActive, HasRoleDirective , AssetsUrlPipe],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
@@ -18,8 +19,7 @@ export class NavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
   private notyf = inject(NotyfService);
-  environment = environment; // ← expose to template
-  
+
   model:any = {};
   login(){
     this.accountService.login(this.model).subscribe({

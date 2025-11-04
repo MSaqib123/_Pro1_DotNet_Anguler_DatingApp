@@ -3,10 +3,11 @@ import { Member } from '../../_models/member';
 import { RouterLink } from '@angular/router';
 import { LikesService } from '../../_services/likes.service';
 import { PresenceService } from '../../_services/presence.service';
+import { AssetsUrlPipe } from "../../_pipes/assets-url.pipe";
 
 @Component({
   selector: 'app-member-card',
-  imports: [RouterLink],
+  imports: [RouterLink, AssetsUrlPipe],
   templateUrl: './member-card.component.html',
   styleUrl: './member-card.component.css',
   encapsulation : ViewEncapsulation.None

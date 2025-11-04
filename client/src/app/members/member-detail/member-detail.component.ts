@@ -13,11 +13,12 @@ import { MessageService } from '../../_services/message.service';
 import { PresenceService } from '../../_services/presence.service';
 import { AccountService } from '../../_services/account.service';
 import { HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
+import { AssetsUrlPipe } from "../../_pipes/assets-url.pipe";
 
 
 @Component({
   selector: 'app-member-detail',
-  imports: [RouterLink, DatePipe, NgbNavModule, GalleryModule, LightboxModule, TimeagoModule, DatePipe, MemberMessageComponent,TimeagoModule],
+  imports: [RouterLink, DatePipe, NgbNavModule, GalleryModule, LightboxModule, TimeagoModule, DatePipe, MemberMessageComponent, TimeagoModule, AssetsUrlPipe],
   templateUrl: './member-detail.component.html',
   styleUrl: './member-detail.component.css'
 })

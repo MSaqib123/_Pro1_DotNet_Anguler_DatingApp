@@ -5,5 +5,5 @@ export const environment = {
     hubsUrl: 'hubs/',
 
     // image location issue
-    assetsBasePath: './assets'
+    assetsBasePath: '/browser/assets' 
 };

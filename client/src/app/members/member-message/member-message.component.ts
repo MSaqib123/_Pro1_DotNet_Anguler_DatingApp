@@ -3,10 +3,11 @@ import { MessageService } from '../../_services/message.service';
 import { Message } from '../../_models/message';
 import { TimeagoModule } from 'ngx-timeago';
 import { FormsModule, NgForm } from '@angular/forms';
+import { AssetsUrlPipe } from "../../_pipes/assets-url.pipe";
 
 @Component({
   selector: 'app-member-message',
-  imports: [TimeagoModule,FormsModule],
+  imports: [TimeagoModule, FormsModule, AssetsUrlPipe],
   templateUrl: './member-message.component.html',
   styleUrl: './member-message.component.css'
 })
