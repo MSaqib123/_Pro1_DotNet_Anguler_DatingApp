@@ -599,3 +599,5 @@ D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Deb
 D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\API.staticwebassets.runtime.json
+D:\Working\Angular_DotNet_Project\V 2\_Pro1_DotNet_Anguler_DatingApp\api\bin\Debug\net8.0\Microsoft.AspNetCore.SpaServices.Extensions.dll

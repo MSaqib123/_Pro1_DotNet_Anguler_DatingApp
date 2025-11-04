@@ -6,6 +6,7 @@ import { Router, RouterLink,RouterLinkActive  } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 import { NotyfService } from '../shared/notyif.service';
 import { HasRoleDirective } from '../_directives/has-role.directive';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -17,7 +18,8 @@ export class NavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
   private notyf = inject(NotyfService);
-
+  environment = environment; // ← expose to template
+  
   model:any = {};
   login(){
     this.accountService.login(this.model).subscribe({
