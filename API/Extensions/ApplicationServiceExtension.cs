@@ -23,8 +23,17 @@ namespace API.Extensions
             services.AddControllers();
             services.AddDbContext<DataContext>(opt =>
             {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                //====== MSSQLConnection =======
+                opt.UseSqlServer(config.GetConnectionString("MSSQLConnection"));
+
+                //====== SqlitConnection =======
+                //opt.UseSqlite(config.GetConnectionString("SqlitConnection"));
             });
+
+
+            
+
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 

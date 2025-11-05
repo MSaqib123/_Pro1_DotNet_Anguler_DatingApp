@@ -18,6 +18,7 @@ builder.Services.AddIdentityService(builder.Configuration);
 
 var app = builder.Build();
 
+
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
@@ -41,6 +42,7 @@ app.MapHub<PresenceHub>("hubs/presence");
 app.MapHub<MessageHub>("hubs/message");
 
 app.MapFallbackToFile("browser/index.html");
+
 
 
 using var scope = app.Services.CreateScope();

@@ -62,7 +62,7 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<
             .HasOne(s => s.TargetUser)
             .WithMany(l => l.LikedByUsers)
             .HasForeignKey(s => s.TargetUserId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.NoAction);
         //NOTE======= on MSSQL  we set to   NoAction  
 
         //===========
